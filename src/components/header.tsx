@@ -21,6 +21,7 @@ import { MdLogout } from "react-icons/md";
 import { TbVaccine } from "react-icons/tb";
 import Logo from "../assets/avatar.png";
 import { logout } from "../store/appSlice";
+
 function header() {
   const login = useSelector((state: RootState) => state.app.login);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -29,14 +30,17 @@ function header() {
     setAnchorEl(event.currentTarget);
   };
   const dispatch = useDispatch();
+  const exit = () => {
+    dispatch(logout());
+    handleClose();
+  };
 
   const handleClose = () => {
     setAnchorEl(null);
-    dispatch(logout());
   };
 
   return (
-    <div className="flex flex-row justify-between items-center px-4 py-2 text-sm lg:text-md lg:px-20 lg:py-3">
+    <div className="header flex flex-row justify-between items-center px-4 py-2 text-sm lg:text-md lg:px-20 lg:py-3">
       <Link to={"/"}>
         <div className="flex flex-row items-center">
           <img className="mr-1" src={logo} alt="" />
@@ -44,12 +48,11 @@ function header() {
         </div>
       </Link>
       {login ? (
-        <div className="hidden lg:flex text-xl flex-row gap-5">
+        <div className="hidden lg:flex text-xl flex-row gap-10">
           <Link to={"/"}>Home</Link>
           <Link to={"/clinics"}>Veterinary Clinics</Link>
-          <Link to={"/pethealt"}>Pet Healt</Link>
+          <Link to={"/pethealth"}>Pet Health</Link>
           <Link to={"/calendar"}>Calendar</Link>
-          <Link to={"/blog"}>Blogs</Link>
         </div>
       ) : (
         <div className="hidden lg:flex text-xl flex-row gap-5">
@@ -57,7 +60,7 @@ function header() {
           <Link to={"/aboutus"}>About Us</Link>
           <Link to={"/features"}>Features</Link>
           <Link to={"/clinics"}>Veterinary Clinics</Link>
-          <Link to={"/blog"}>Blogs</Link>
+          <Link to={"/pethealth"}>Pet Health</Link>
         </div>
       )}
       {login ? (
@@ -124,10 +127,13 @@ function header() {
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
-            <MenuItem onClick={handleClose}>
-              <Avatar />
-              Profile
-            </MenuItem>
+            <Link to={"/profile"}>
+              <MenuItem onClick={handleClose}>
+                <Avatar />
+                Profile
+              </MenuItem>
+            </Link>
+
             <MenuItem className="flex flex-row gap-2" onClick={handleClose}>
               <span className="opacity-50">
                 <FaBookmark />
@@ -153,7 +159,7 @@ function header() {
               </ListItemIcon>
               Settings
             </MenuItem>
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={exit}>
               <ListItemIcon>
                 <MdLogout />
               </ListItemIcon>

@@ -8,6 +8,8 @@ import Signup from "./pages/signupPage";
 import NotFound from "./pages/notFound";
 import Home from "./pages/home";
 import Header from "./components/header";
+import Profile from "./pages/profile";
+import PetHealth from "./pages/pethealth";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
 
@@ -21,6 +23,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/pethealth" element={<PetHealth />} />
         </Routes>
       </Provider>
     </>

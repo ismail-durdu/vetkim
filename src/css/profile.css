@@ -1,0 +1,26 @@
+.profile {
+  content: "";
+  left: 0;
+  right: 0;
+  height: 75px;
+  border-radius: 5px;
+  margin: 3rem 0;
+
+  background: linear-gradient(
+    to right,
+    #5158e3,
+    #0089fc,
+    #00b0ff,
+    #4ed2fc,
+    #a4f0fb
+  );
+}
+.pet::before {
+  content: "";
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
