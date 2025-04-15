@@ -1,4 +1,8 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: Content-Type");
+header("Content-Type: application/json");
+
 $host = 'localhost';
 $user = 'root'; // MySQL kullanıcısı
 $pass = 'Emre541523.';     // Şifren varsa buraya yaz

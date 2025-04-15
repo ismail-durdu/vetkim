@@ -5,14 +5,14 @@ import "../css/loginpage.css";
 import { useState } from "react";
 
 function loginPage() {
-  const [username, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
-    const response = await fetch("http://localhost/VETKIM-backend/login.php", {
+    const response = await fetch("http://localhost/vetkim-backend/login.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ email, password }),
     });
 
     const data = await response.json();
@@ -38,14 +38,21 @@ function loginPage() {
           <input
             className="bg-gray-100 px-2 py-1 rounded"
             type="text"
-            placeholder="Username, phone or email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <input
             className="bg-gray-100 px-2 py-1 rounded"
-            type="text"
-            placeholder="password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <button className=" bg-purple-400 py-1.5 rounded-xl cursor-pointer">
+          <button
+            onClick={handleLogin}
+            className=" bg-purple-400 py-1.5 rounded-xl cursor-pointer"
+          >
             log in
           </button>
         </div>
