@@ -3,13 +3,19 @@ import vetkim from "../assets/vetkim1.jpg";
 import logo from "../assets/vetkim-logo.jpg";
 import "../css/loginpage.css";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import { logout } from "../store/appSlice";
 
 function loginPage() {
+  const dispatch = useDispatch();
+  dispatch(logout());
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
-    const response = await fetch("http://localhost/vetkim-backend/login.php", {
+    const response = await fetch("http://localhost/VETKIM-backend/login.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -17,6 +23,7 @@ function loginPage() {
 
     const data = await response.json();
     alert(data.message);
+    logout();
   };
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center gap-5 pb-10">
