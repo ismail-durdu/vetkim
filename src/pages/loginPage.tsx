@@ -2,8 +2,22 @@ import React from "react";
 import vetkim from "../assets/vetkim1.jpg";
 import logo from "../assets/vetkim-logo.jpg";
 import "../css/loginpage.css";
+import { useState } from "react";
 
 function loginPage() {
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+  const handleLogin = async () => {
+    const response = await fetch("http://localhost/VETKIM-backend/login.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+
+    const data = await response.json();
+    alert(data.message);
+  };
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center gap-5 pb-10">
       <div className="w-8/12 lg:w-4/12">
