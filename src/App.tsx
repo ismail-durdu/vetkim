@@ -10,6 +10,7 @@ import Home from "./pages/home";
 import Header from "./components/header";
 import Profile from "./pages/profile";
 import PetHealth from "./pages/pethealth";
+import Clinic from "./pages/clinicsPage";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/pethealth" element={<PetHealth />} />
+          <Route path="/clinics" element={<Clinic />} />
         </Routes>
       </Provider>
     </>
