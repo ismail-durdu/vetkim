@@ -2,29 +2,8 @@ import React from "react";
 import vetkim from "../assets/vetkim1.jpg";
 import logo from "../assets/vetkim-logo.jpg";
 import "../css/loginpage.css";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store/store";
-import { logout } from "../store/appSlice";
 
-function loginPage() {
-  const dispatch = useDispatch();
-  dispatch(logout());
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleLogin = async () => {
-    const response = await fetch("http://localhost/VETKIM-backend/login.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
-
-    const data = await response.json();
-    alert(data.message);
-    logout();
-  };
+function signupPage() {
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center gap-5 pb-10">
       <div className="w-8/12 lg:w-4/12">
@@ -45,22 +24,20 @@ function loginPage() {
           <input
             className="bg-gray-100 px-2 py-1 rounded"
             type="text"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Mobile number or e-mail"
           />
           <input
             className="bg-gray-100 px-2 py-1 rounded"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            type="text"
+            placeholder="Full name"
           />
-          <button
-            onClick={handleLogin}
-            className=" bg-purple-400 py-1.5 rounded-xl cursor-pointer"
-          >
-            log in
+          <input
+            className="bg-gray-100 px-2 py-1 rounded"
+            type="text"
+            placeholder="Password"
+          />
+          <button className=" bg-purple-400 py-1.5 rounded-xl cursor-pointer">
+            Sign Up
           </button>
         </div>
         <div>
@@ -68,13 +45,11 @@ function loginPage() {
         </div>
         <div className="flex flex-col gap-3 mt-3">
           <p className="text-center opacity-50">Forgot password?</p>
-          <p className="text-center opacity-50">
-            Don't have an account? Sing up
-          </p>
+          <p className="text-center opacity-50">Have an acount? Log in</p>
         </div>
       </div>
     </div>
   );
 }
 
-export default loginPage;
+export default signupPage;
