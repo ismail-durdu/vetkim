@@ -1,0 +1,26 @@
+.decmid {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.main6btn {
+  background: linear-gradient(
+    to right,
+    #a40de5,
+    #ad26e2,
+    #b537df,
+    #bc45dc,
+    #c252da
+  );
+}
+.main6 {
+  background: linear-gradient(
+    to right top,
+    #b0d4e7,
+    #c1d6e8,
+    #cfd9e7,
+    #dadde5,
+    #e2e2e3
+  );
+}
