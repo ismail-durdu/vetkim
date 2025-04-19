@@ -1,0 +1,130 @@
+.calendar-page {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  @media (min-width: 1024px) {
+    .calendar-page {
+      flex-direction: row;
+    }
+  }
+  
+  .calendar-section {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .calendar-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #6f2dbd;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #6f2dbd;
+    padding-bottom: 0.5rem;
+  }
+  
+  .react-calendar__tile {
+    height: 50px !important;
+    position: relative;
+    padding: 0 !important;
+  }
+  
+  .react-calendar__tile abbr {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .react-calendar__tile img {
+    width: 30px;
+    height: 30px;
+    display: block;
+    margin: 0 auto;
+    z-index: 0;
+    position: relative;
+    top: -5px;
+  }
+  
+  .notes-section {
+    flex-grow: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .notes-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #6f2dbd;
+    margin-bottom: 16px;
+  }
+  
+  .note {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+  }
+  
+  .note-date {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 4px;
+  }
+  
+  .note-text {
+    color: #555;
+    font-size: 15px;
+  }
+  
+  .note img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    opacity: 0.6;
+  }
+  
+  .note img:hover {
+    opacity: 1;
+  }
+  
+  /* Bugünün tarihi rengi */
+  .react-calendar__tile--now {
+    background: #d2befa8a !important;
+    color: #000 !important;
+    font-weight: bold;
+    border-radius: 8px;
+  }
+  
+  /* Not olan günlerin arka planı */
+  .note-highlight {
+    background-color: #eecff596 !important;
+    border-radius: 8px;
+  }
+  
+  /* See all → butonu */
+  .see-all-wrapper {
+    margin-top: 20px;
+  }
+  
+  .see-all-button {
+    color: #6f2dbd;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .see-all-button:hover {
+    color: #5a1eb7;
+  }
+  

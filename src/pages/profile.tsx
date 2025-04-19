@@ -1,13 +1,14 @@
-import React from "react";
 import avatar from "../assets/avatar.png";
 import { FaPlus } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
-
 import { MdEdit } from "react-icons/md";
 import "../css/profile.css";
 import { MdCall } from "react-icons/md";
+import { useNavigate } from "react-router-dom"; // ✅ Eklendi
 
-function profile() {
+function Profile() {
+  const navigate = useNavigate(); // ✅ Eklendi
+
   return (
     <div className="px-5 lg:px-20">
       <div className="profile"></div>
@@ -23,7 +24,8 @@ function profile() {
           <MdEdit /> Edit
         </div>
       </div>
-      <div className=" grid grid-cols-1 gap-5 lg:grid-cols-2">
+
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
         <div>
           <p>Full Name</p>
           <input
@@ -40,7 +42,6 @@ function profile() {
             placeholder="Nick Name"
           />
         </div>
-
         <div>
           <p>Gender</p>
           <input
@@ -57,7 +58,6 @@ function profile() {
             placeholder="Country"
           />
         </div>
-
         <div>
           <p>Language</p>
           <input
@@ -102,21 +102,30 @@ function profile() {
           <FaPlus /> Add E-mail Address
         </button>
       </div>
+
       <div>
         <h1 className="font-bold ">My Phone Number</h1>
         <div className="flex flex-row items-center gap-2 my-3">
           <div className="bg-blue-100 p-1.5 rounded-full text-blue-500">
             <MdCall />
           </div>
-
           <p className="opacity-70">0512 513 5411</p>
         </div>
+
         <button className="flex flex-row items-center px-4 py-1 my-5 gap-2 bg-blue-100 text-blue-500 rounded-lg  ">
           <FaPlus /> Add Phone Number
         </button>
       </div>
+
+      {/* ✅ Yönlendirme butonu: Go to Calendar */}
+      <button
+        onClick={() => navigate("/calendar")}
+        className="flex flex-row items-center px-4 py-2 my-5 gap-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+      >
+        📅 Go to Calendar
+      </button>
     </div>
   );
 }
 
-export default profile;
+export default Profile;

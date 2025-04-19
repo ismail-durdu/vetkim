@@ -12,6 +12,7 @@ import Profile from "./pages/profile";
 import PetHealth from "./pages/pethealth";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
+import CalendarPage from "./pages/CalendarPage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/pethealth" element={<PetHealth />} />
+          <Route path="/calendar" element={<CalendarPage />} /> 
         </Routes>
       </Provider>
     </>
