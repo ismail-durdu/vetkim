@@ -1,4 +1,3 @@
-import React from "react";
 import VectorBlob from "../../assets/Vector1.png"; // doğru yol olduğuna emin ol
 
 function FeatureList() {

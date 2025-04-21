@@ -1,4 +1,3 @@
-import React from "react";
 import FeatureSection from "../components/Home/FeatureSection";
 import FeatureList from "../components/Home/FeatureList";
 import Footer from "../components/footer";
