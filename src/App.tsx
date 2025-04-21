@@ -11,6 +11,7 @@ import PetHealth from "./pages/pethealth";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
 import CalendarPage from "./pages/CalendarPage";
+import AboutUs from "./pages/aboutus";
 
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
           <Route path="/pethealth" element={<PetHealth />} />
           <Route path="/calendar" element={<CalendarPage />} /> 
           <Route path="/features" element={<Features_temp />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          
         </Routes>
       </Provider>
     </>
