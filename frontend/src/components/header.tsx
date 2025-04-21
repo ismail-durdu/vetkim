@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../store/store";
 import { GoBell } from "react-icons/go";
-import { RxAvatar } from "react-icons/rx";
+
 import Badge from "@mui/material/Badge";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
