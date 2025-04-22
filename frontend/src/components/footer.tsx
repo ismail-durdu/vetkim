@@ -10,7 +10,7 @@ import { FaLinkedinIn } from "react-icons/fa6";
 function footer() {
   return (
     <div>
-      <div className="footer  ">
+      <div className="footer   ">
         <div>
           <Link to={"/"}>
             <div className="flex flex-row items-center mb-4">
@@ -19,7 +19,7 @@ function footer() {
             </div>
           </Link>
           <div>
-            <p className="opacity-60 leading-loose">
+            <p className="opacity-60 leading-loose text-sm md:text-md lg:text-lg">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. At
               molestias, distinctio dolor, minus perspiciatis vitae ad quam
               officiis eveniet adipisci illum enim amet reiciendis. Hic
@@ -29,8 +29,8 @@ function footer() {
             </p>
           </div>
         </div>
-        <div>
-          <h1 className="text-2xl mb-2">Links</h1>
+        <div className="text-sm md:text-md lg:text-lg">
+          <h1 className="text-2xl mb-2 text-md md:text-lg ">Links</h1>
           <div className="flex flex-col gap-3 opacity-60">
             <Link to={"/"}>Home</Link>
             <Link to={"/aboutus"}>About Us</Link>
@@ -39,8 +39,8 @@ function footer() {
             <Link to={"/blog"}>Blog</Link>
           </div>
         </div>
-        <div className="flex flex-col gap-3">
-          <h1 className="text-2xl">Contact Us</h1>
+        <div className="flex flex-col gap-3 text-sm md:text-md lg:text-lg">
+          <h1 className="text-2xl text-md md:text-lg">Contact Us</h1>
           <p className="opacity-60">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis
             voluptatibus saepe ad dolor. Odio ratione alias ullam harum animi
@@ -63,7 +63,7 @@ function footer() {
           </a>
         </div>
       </div>
-      <div className="info ">
+      <div className="info text-sm md:text-md lg:text-lg ">
         <p className="text-sm opacity-50 text-center my-6">
           © 2023 Copyright by IK Developers. All rights reserved.
         </p>
