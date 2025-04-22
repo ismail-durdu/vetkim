@@ -48,7 +48,7 @@ function footer() {
           </p>
           <p className="opacity-60">+923183561921</p>
         </div>
-        <div className="flex flex-row gap-2 items-end">
+        <div className="z-30 flex flex-row gap-2 items-end">
           <a href="#">
             <FaFacebookF />
           </a>

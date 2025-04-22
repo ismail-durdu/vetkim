@@ -1,4 +1,4 @@
-import FeatureSection from "../components/Home/FeatureSection";
+import FeatureSection from "../components/Home/featuresection";
 import FeatureList from "../components/Home/FeatureList";
 import Footer from "../components/footer";
 import BritishCat from "../assets/cat.png";
@@ -13,13 +13,11 @@ function Features_temp() {
 
       <FeatureSection />
 
-
       <img
         src={VectorBlob}
         alt="Background blob"
         className="absolute top-[80%] right-[5%] "
       />
-
 
       <div className="flex flex-col lg:flex-row justify-between items-start gap-10 mb-20 relative z-10">
         <div className="w-full lg:w-2/3">
