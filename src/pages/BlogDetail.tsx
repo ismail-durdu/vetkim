@@ -5,7 +5,7 @@ function BlogDetail() {
   useParams();
   const location = useLocation();
   const { image, category, title, description, fullTextFirstPart, fullTextSecondPart} = location.state || {};
-  
+
 
   return (
     <div className="px-6 md:px-20 py-10">
