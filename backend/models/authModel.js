@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 // Kullanıcıyı email ile bul
 const findUserByEmail = (email) => {
   return new Promise((resolve, reject) => {
-    const query = "SELECT * FROM user WHERE user_email = ?";
+    const query = "SELECT * FROM users WHERE user_email = ?";
     db.query(query, [email], (err, results) => {
       if (err) {
         reject(err); // Hata durumunda reject

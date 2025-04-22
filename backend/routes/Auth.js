@@ -9,8 +9,8 @@ const router = express.Router();
 const db = mysql.createConnection({
   host: process.env.DB_HOST || "localhost",
   user: process.env.DB_USER || "root",
-  password: process.env.DB_PASSWORD || "Xhq8nc3mcj.",
-  database: process.env.DB_NAME || "vetkim",
+  password: process.env.DB_PASSWORD || "Emre541523.",
+  database: process.env.DB_NAME || "VetKim",
 });
 
 db.connect((err) => {
@@ -32,7 +32,7 @@ router.post("/login", async (req, res) => {
 
   try {
     // Kullanıcıyı veritabanında bul
-    const query = "SELECT * FROM user WHERE user_email = ?";
+    const query = "SELECT * FROM users WHERE user_email = ?";
     db.query(query, [email], async (err, results) => {
       if (err) {
         console.error(err);
