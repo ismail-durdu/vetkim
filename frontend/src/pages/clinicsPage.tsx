@@ -6,7 +6,7 @@ import Footer from "../components/footer";
 
 function clinicsPage() {
   return (
-    <div className=" px-5 lg:p-20 ">
+    <div className=" px-5 lg:px-20 ">
       <div>
         <img className=" w-30 lg:w-60 mx-auto" src={photo} alt="" />
       </div>
