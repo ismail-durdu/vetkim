@@ -4,6 +4,7 @@ import Login from "./pages/loginPage";
 import Signup from "./pages/signupPage";
 import NotFound from "./pages/notFound";
 import Home from "./pages/home";
+import Clinic from "./pages/clinicsPage";
 import Header from "./components/header";
 import Profile from "./pages/profile";
 import Features_temp from "./pages/featurestemp";
@@ -31,6 +32,7 @@ function App() {
           <Route path="/features" element={<Features_temp />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
+          <Route path="/clinics" element={<Clinic />} />
 
         </Routes>
       </Provider>
