@@ -12,6 +12,7 @@ import { store } from "./store/store";
 import { Provider } from "react-redux";
 import CalendarPage from "./pages/CalendarPage";
 import AboutUs from "./pages/aboutus";
+import BlogDetail from "./pages/BlogDetail";
 
 
 function App() {
@@ -29,7 +30,8 @@ function App() {
           <Route path="/calendar" element={<CalendarPage />} /> 
           <Route path="/features" element={<Features_temp />} />
           <Route path="/aboutus" element={<AboutUs />} />
-          
+          <Route path="/blog/:id" element={<BlogDetail />} />
+
         </Routes>
       </Provider>
     </>
