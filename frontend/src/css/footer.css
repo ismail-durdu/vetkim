@@ -22,7 +22,6 @@
     display: grid;
     gap: 20px;
     grid-template-columns: 2fr 1fr;
-    padding: 2rem;
   }
 }
 @media (min-width: 1024px) {
@@ -30,6 +29,5 @@
     display: grid;
     grid-template-columns: 2fr 1fr 2fr 1fr;
     gap: 50px;
-    padding: 2rem 5.5rem;
   }
 }
