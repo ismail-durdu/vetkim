@@ -12,40 +12,32 @@ interface IClinic {
 
 function Clinic({ clinic }: { clinic: IClinic }) {
   return (
-    <div className="mx-auto">
-      <div key={clinic.location_id} className="bg-gray-100 px-10 py-10 rounded-lg shadow-lg flex flex-col items-center w-full h-[550px]">
-        
-        
+    <div
+      key={clinic.location_id}
+      className="flex flex-col my-5 lg:my-15 gap-4 bg-gray-100 px-5 lg:px-10 pb-6 pt-4  "
+    >
+      <div className="w-full">
+        <img className="w-2/3 mx-auto" src={logo1} alt="" />
+      </div>
+      <div>
+        <h1>{clinic.clinic_name}</h1>
+        <p>{clinic.province}</p>
+      </div>
 
-        {/* Klinik Görseli */}
-        <div className="w-full h-[250px] flex items-center justify-center">
-          <img className="w-4/5 h-full object-cover rounded-lg" src={logo1} alt="Clinic Logo" />
-        </div>
-
-        {/* Klinik Adı ve Şehir */}
-        <div className="text-center mt-4">
-          <h1 className="text-3xl font-bold">{clinic.clinic_name}</h1>
-          <p className="text-lg text-gray-600">{clinic.province}</p>
-        </div>
-
-        {/* Yıldız Derecelendirmesi */}
-        <div className="text-amber-400 flex flex-row justify-center gap-3 mt-3">
-          <IoMdStar />
-          <IoMdStar />
-          <IoMdStar />
-          <IoMdStar />
-          <IoMdStar />
-        </div>
-
-        {/* Butonlar */}
-        <div className="flex flex-row justify-center gap-8 mt-6">
-          <button className="flex flex-row items-center gap-2 text-purple-700 px-6 py-3 rounded border border-purple-700">
-            See More <FaEye />
-          </button>
-          <button className="flex flex-row items-center gap-2 text-purple-700 px-6 py-3 rounded border border-purple-700">
-            Take Appointment <FaArrowRight />
-          </button>
-        </div>
+      <div className="text-amber-400 flex flex-row gap-0.5">
+        <IoMdStar />
+        <IoMdStar />
+        <IoMdStar />
+        <IoMdStar />
+        <IoMdStar />
+      </div>
+      <div className="flex flex-row justify-between">
+        <button className="flex flex-row items-center gap-1  text-purple-700 px-3 py-1 rounded">
+          See More <FaEye />
+        </button>
+        <button className="flex flex-row items-center gap-1 text-purple-700 px-3 py-1 rounded">
+          Take Appoinment <FaArrowRight />
+        </button>
       </div>
     </div>
   );
