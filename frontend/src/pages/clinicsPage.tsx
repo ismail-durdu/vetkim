@@ -38,7 +38,7 @@ function ClinicsPage() {
       </div>
       
       {/* Klinikler */}
-      <div className="grid grid-cols-1 w-full md:grid-cols-2 xl:grid-cols-3 gap-4 mt-5">
+      <div className="grid grid-cols-1 mt-15 w-full md:grid-cols-2 xl:grid-cols-3 gap-8">
         {clinics.map((clinic) => (
           <Clinic clinic={clinic} key={clinic.location_id} />
         ))}

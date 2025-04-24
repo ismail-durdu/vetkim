@@ -14,14 +14,14 @@ function Clinic({ clinic }: { clinic: IClinic }) {
   return (
     <div
       key={clinic.location_id}
-      className="flex flex-col my-5 lg:my-15 gap-4 bg-gray-100 px-5 lg:px-10 pb-6 pt-4  "
+      className="flex flex-col gap-4 bg-gray-100 px-5 lg:px-10 pb-6 pt-4  "
     >
       <div className="w-full">
         <img className="w-2/3 mx-auto" src={logo1} alt="" />
       </div>
-      <div>
-        <h1>{clinic.clinic_name}</h1>
-        <p>{clinic.province}</p>
+      <div className="self-center">
+        <h1 className="text-2xl text-bold">{clinic.clinic_name}</h1>
+        <p className="text-center">{clinic.province}</p>
       </div>
 
       <div className="text-amber-400 flex flex-row gap-0.5">
@@ -31,7 +31,7 @@ function Clinic({ clinic }: { clinic: IClinic }) {
         <IoMdStar />
         <IoMdStar />
       </div>
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-row justify-between mt-5">
         <button className="flex flex-row items-center gap-1  text-purple-700 px-3 py-1 rounded">
           See More <FaEye />
         </button>
