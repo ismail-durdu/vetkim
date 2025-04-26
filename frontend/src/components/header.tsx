@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../assets/vetkim-logo.jpg";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../store/store";
 import { GoBell } from "react-icons/go";
@@ -30,9 +30,11 @@ function header() {
     setAnchorEl(event.currentTarget);
   };
   const dispatch = useDispatch();
+  const navigate=useNavigate();
   const exit = () => {
     dispatch(logout());
     handleClose();
+    navigate('/');
   };
 
   const handleClose = () => {
