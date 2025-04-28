@@ -2,10 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 export interface LoginState {
   login: boolean;
+  edit: boolean;
 }
 
 const initialState: LoginState = {
   login: true,
+  edit: false,
 };
 export const appSlice = createSlice({
   name: "app",
@@ -17,8 +19,15 @@ export const appSlice = createSlice({
     login: (state) => {
       state.login = true;
     },
+    openTheEditMode: (state) => {
+      state.edit = true;
+    },
+    closeTheEditMode: (state) => {
+      state.edit = false;
+    },
   },
 });
-export const { logout, login } = appSlice.actions;
+export const { logout, login, openTheEditMode, closeTheEditMode } =
+  appSlice.actions;
 
 export default appSlice.reducer;
