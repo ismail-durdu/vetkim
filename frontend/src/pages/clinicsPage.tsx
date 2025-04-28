@@ -28,6 +28,7 @@ function ClinicsPage() {
   }, []);
 
   return (
+    <div>
     <div className="px-5 lg:px-20">
       <div>
         <img className="w-30 lg:w-60 mx-auto" src={photo} alt="VetKim Logo" />
@@ -38,12 +39,12 @@ function ClinicsPage() {
       </div>
       
       {/* Klinikler */}
-      <div className="grid grid-cols-1 mt-15 w-full md:grid-cols-2 xl:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 mt-15 w-full md:grid-cols-2 xl:grid-cols-3 gap-8 mb-8">
         {clinics.map((clinic) => (
           <Clinic clinic={clinic} key={clinic.location_id} />
         ))}
       </div>
-
+      </div>
       <Footer />
     </div>
   );

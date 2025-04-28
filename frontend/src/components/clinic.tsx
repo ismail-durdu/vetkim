@@ -14,7 +14,7 @@ function Clinic({ clinic }: { clinic: IClinic }) {
   return (
     <div
       key={clinic.location_id}
-      className="flex flex-col gap-4 bg-gray-100 px-5 lg:px-10 pb-6 pt-4  "
+      className="flex flex-col gap-4 bg-gray-100 px-5 lg:px-10 pb-10 pt-4  "
     >
       <div className="w-full">
         <img className="w-2/3 mx-auto" src={logo1} alt="" />
@@ -24,7 +24,7 @@ function Clinic({ clinic }: { clinic: IClinic }) {
         <p className="text-center">{clinic.province}</p>
       </div>
 
-      <div className="text-amber-400 flex flex-row gap-0.5">
+      <div className="text-amber-400 flex flex-row gap-0.5 self-center">
         <IoMdStar />
         <IoMdStar />
         <IoMdStar />
