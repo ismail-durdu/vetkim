@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/vetkim-logo.jpg";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -21,6 +21,21 @@ import { MdLogout } from "react-icons/md";
 import { TbVaccine } from "react-icons/tb";
 import Logo from "../assets/avatar.png";
 import { logout } from "../store/appSlice";
+import avatarMale from "../assets/avatars/male.png";
+import avatarFemale from "../assets/avatars/female.png";
+import avatar from "../assets/avatar.png";
+
+interface User {
+  user_email: string;
+  user_name: string;
+  user_lastname: string;
+  user_old: number;
+  user_phone: string;
+  user_gender: string;
+  user_country: string;
+  location_id: number;
+  user_province: string;
+}
 
 function header() {
   const login = useSelector((state: RootState) => state.app.login);
@@ -31,6 +46,40 @@ function header() {
   };
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const getAvatar = () => {
+    if (userData?.user_gender === "Erkek") {
+      return avatarMale;
+    } else if (userData?.user_gender === "Kadin") {
+      return avatarFemale;
+    }
+    return avatar;
+  };
+
+  const [userData, setUserData] = useState<User>(null!);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    fetch("http://localhost:8000/api/profile", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Profil verisi alınamadı");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setUserData(data.user);
+      })
+      .catch((error) => {
+        console.error("Hata:", error);
+      });
+  }, []);
   const exit = () => {
     const token = localStorage.getItem("token");
 
@@ -151,7 +200,7 @@ function header() {
                 aria-expanded={open ? "true" : undefined}
               >
                 <Avatar sx={{ width: 32, height: 32 }}>
-                  <img src={Logo} alt="" />
+                  <img src={getAvatar()} alt="" />
                 </Avatar>
               </IconButton>
             </Tooltip>
@@ -200,18 +249,6 @@ function header() {
               </MenuItem>
             </Link>
 
-            <MenuItem className="flex flex-row gap-2" onClick={handleClose}>
-              <span className="opacity-50">
-                <FaBookmark />
-              </span>
-              Saved Blogs
-            </MenuItem>
-            <MenuItem className="flex flex-row gap-2" onClick={handleClose}>
-              <span className="opacity-50">
-                <TbVaccine />
-              </span>
-              My Vet
-            </MenuItem>
             <Divider />
             <MenuItem onClick={handleClose}>
               <ListItemIcon>

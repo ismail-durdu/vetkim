@@ -29,11 +29,11 @@ interface User {
 function Profile() {
   const getAvatar = () => {
     if (userData?.user_gender === "Erkek") {
-      return avatarMale; // Erkek avatarı
+      return avatarMale;
     } else if (userData?.user_gender === "Kadin") {
-      return avatarFemale; // Kadın avatarı
+      return avatarFemale;
     }
-    return avatar; // Varsayılan avatar
+    return avatar;
   };
   const navigate = useNavigate();
   const editMode = useSelector((state: RootState) => state.app.edit);
@@ -46,7 +46,6 @@ function Profile() {
     dispatch(closeTheEditMode());
   }, [dispatch]);
   const [userData, setUserData] = useState<User>(null!);
-  console.log(userData);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -79,13 +78,15 @@ function Profile() {
       <div className="mb-5 mt-2 flex flex-row justify-between items-center">
         <div className="w-1/2 flex flex-row items-center gap-3">
           <img
-            className="w-1/3 rounded-full lg:w-2/5 xl:w-1/4"
+            className="w-1/3 rounded-full lg:w-1/5 xl:w-1/6"
             src={getAvatar()}
             alt=""
           />
           <div>
-            <h1>Alexa Rawles</h1>
-            <p className="opacity-60">alexarawles@gmail.com</p>
+            <h1>
+              {userData?.user_name} {userData?.user_lastname}
+            </h1>
+            <p className="opacity-60">{userData?.user_email}</p>
           </div>
         </div>
         {editMode ? (
