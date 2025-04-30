@@ -1,5 +1,6 @@
 const express = require("express");
 const mysql = require("mysql2");
+require("dotenv").config();
 
 const router = express.Router();
 
@@ -18,19 +19,10 @@ db.connect((err) => {
   console.log("✅ MySQL connected successfully!");
 });
 
-// Klinik bazlı yorumları çekme API'si
-router.get("/comments/:clinicId", (req, res) => {
-  const clinicId = req.params.clinicId;
-  const sql = `
-        SELECT c.comment_id, c.rate, c.remark, u.user_name, u.user_lastname 
-        FROM comment c
-        JOIN users_comment uc ON c.comment_id = uc.comment_id
-        JOIN users u ON uc.user_id = u.user_id
-        ORDER BY RAND()
-        LIMIT 4;
-    `;
+router.get("/blogs", (req, res) => {
+  const sql = `SELECT blog_id, blog_name, blog_text FROM blog ORDER BY blog_id DESC LIMIT 15`;
 
-  db.query(sql, [clinicId], (err, results) => {
+  db.query(sql, (err, results) => {
     if (err) {
       console.error("Database query error:", err.sqlMessage);
       return res

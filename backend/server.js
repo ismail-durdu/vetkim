@@ -9,6 +9,7 @@ const clinicRoutes = require("./routes/clinic");
 const seeMoreRoutes = require("./routes/seeMore");
 const commentRoutes = require("./routes/comment"); // Yorumları ekledik ✅
 const profileRoute = require("./routes/profile");
+const blogRoutes = require("./routes/blogs");
 const { router: logoutRoute, authenticate } = require("./routes/logout");
 
 dotenv.config();
@@ -30,6 +31,7 @@ app.use("/api/auth", signupRoutes);
 
 app.use("/api/profile", profileRoute);
 app.use("/api", clinicRoutes);
+app.use("/api", blogRoutes);
 app.use("/api", logoutRoute);
 app.use("/api", seeMoreRoutes);
 app.use("/api", commentRoutes); // Yorumları API'ye dahil ettik ✅
