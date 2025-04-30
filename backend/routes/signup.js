@@ -1,6 +1,6 @@
 const express = require("express");
 const mysql = require("mysql2");
-
+require("dotenv").config();
 const router = express.Router();
 
 // Veritabanı bağlantısı
@@ -22,7 +22,7 @@ db.connect((err) => {
 router.post("/signup", (req, res) => {
   const { email, full_name, password } = req.body;
 
-  console.log("📌 Signup request received:", req.body); 
+  console.log("📌 Signup request received:", req.body);
 
   if (!email || !full_name || !password) {
     return res.status(400).json({ error: "Tüm alanları doldurun!" });
@@ -33,18 +33,23 @@ router.post("/signup", (req, res) => {
     db.query(sqlCheck, [email], (err, results) => {
       if (err) {
         console.error("Database lookup error:", err.sqlMessage);
-        return res.status(500).json({ error: "Database lookup error", details: err.sqlMessage });
+        return res
+          .status(500)
+          .json({ error: "Database lookup error", details: err.sqlMessage });
       }
 
       if (results.length > 0) {
         return res.status(409).json({ error: "Bu e-posta zaten kayıtlı!" });
       }
 
-      const sqlInsert = "INSERT INTO users (user_email, user_name, user_password) VALUES (?, ?, ?)";
+      const sqlInsert =
+        "INSERT INTO users (user_email, user_name, user_password) VALUES (?, ?, ?)";
       db.query(sqlInsert, [email, full_name, password], (err, result) => {
         if (err) {
           console.error("Database insert error:", err.sqlMessage);
-          return res.status(500).json({ error: "Database error", details: err.sqlMessage });
+          return res
+            .status(500)
+            .json({ error: "Database error", details: err.sqlMessage });
         }
         res.status(201).json({ message: "Kullanıcı başarıyla oluşturuldu" });
       });

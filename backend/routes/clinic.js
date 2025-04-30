@@ -1,14 +1,14 @@
 const express = require("express");
 const mysql = require("mysql2");
+require("dotenv").config();
 
 const router = express.Router();
 
-
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "Emre541523.",
-  database: "VetKim",
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "Emre541523.",
+  database: process.env.DB_NAME || "VetKim",
 });
 
 db.connect((err) => {
@@ -19,9 +19,8 @@ db.connect((err) => {
   console.log("✅ MySQL connected successfully!");
 });
 
-
 router.get("/clinics", (req, res) => {
-    const sql = `
+  const sql = `
    SELECT clinic.clinic_id, clinic.clinic_name, location.province 
 FROM clinic 
 JOIN location ON clinic.location_id = location.location_id 
@@ -32,10 +31,12 @@ LIMIT 15;
   db.query(sql, (err, results) => {
     if (err) {
       console.error("Database query error:", err.sqlMessage);
-      return res.status(500).json({ error: "Database error", details: err.sqlMessage });
+      return res
+        .status(500)
+        .json({ error: "Database error", details: err.sqlMessage });
     }
 
-    res.status(200).json(results); 
+    res.status(200).json(results);
   });
 });
 

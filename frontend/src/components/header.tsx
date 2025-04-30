@@ -30,11 +30,30 @@ function header() {
     setAnchorEl(event.currentTarget);
   };
   const dispatch = useDispatch();
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const exit = () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      fetch("http://localhost:8000/api/logout", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("Logout başarıyla gönderildi:", data);
+        })
+        .catch((err) => {
+          console.error("Logout sırasında hata:", err);
+        });
+    }
+
     dispatch(logout());
+    localStorage.removeItem("token");
     handleClose();
-    navigate('/');
+    navigate("/");
   };
 
   const handleClose = () => {
@@ -51,24 +70,75 @@ function header() {
       </Link>
       {login ? (
         <div className="hidden lg:flex text-xl flex-row gap-10">
-          <Link to={"/"} className="transition-colors duration-300 hover:text-purple-400">Home</Link>
-          <Link to={"/clinics"} className="transition-colors duration-300 hover:text-purple-400">Veterinary Clinics</Link>
-          <Link to={"/pethealth"} className="transition-colors duration-300 hover:text-purple-400">Pet Health</Link>
-          <Link to={"/calendar"} className="transition-colors duration-300 hover:text-purple-400">Calendar</Link>
+          <Link
+            to={"/"}
+            className="transition-colors duration-300 hover:text-purple-400"
+          >
+            Home
+          </Link>
+          <Link
+            to={"/clinics"}
+            className="transition-colors duration-300 hover:text-purple-400"
+          >
+            Veterinary Clinics
+          </Link>
+          <Link
+            to={"/blog"}
+            className="transition-colors duration-300 hover:text-purple-400"
+          >
+            Blogs
+          </Link>
+          <Link
+            to={"/calendar"}
+            className="transition-colors duration-300 hover:text-purple-400"
+          >
+            Calendar
+          </Link>
         </div>
       ) : (
         <div className="hidden lg:flex text-xl flex-row gap-5">
-          <Link to={"/"} className="transition-colors duration-300 hover:text-purple-400">Home</Link>
-          <Link to={"/aboutus"} className="transition-colors duration-300 hover:text-purple-400">About Us</Link>
-          <Link to={"/features"} className="transition-colors duration-300 hover:text-purple-400">Features</Link>
-          <Link to={"/clinics"} className="transition-colors duration-300 hover:text-purple-400">Veterinary Clinics</Link>
-          <Link to={"/pethealth"} className="transition-colors duration-300 hover:text-purple-400">Pet Health</Link>
+          <Link
+            to={"/"}
+            className="transition-colors duration-300 hover:text-purple-400"
+          >
+            Home
+          </Link>
+          <Link
+            to={"/aboutus"}
+            className="transition-colors duration-300 hover:text-purple-400"
+          >
+            About Us
+          </Link>
+          <Link
+            to={"/features"}
+            className="transition-colors duration-300 hover:text-purple-400"
+          >
+            Features
+          </Link>
+          <Link
+            to={"/clinics"}
+            className="transition-colors duration-300 hover:text-purple-400"
+          >
+            Veterinary Clinics
+          </Link>
+          <Link
+            to={"/blog"}
+            className="transition-colors duration-300 hover:text-purple-400"
+          >
+            Blogs
+          </Link>
         </div>
       )}
       {login ? (
         <React.Fragment>
-          <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-            <Badge className="text-lg pt-1 cursor-pointer" badgeContent={4} color="secondary">
+          <Box
+            sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
+          >
+            <Badge
+              className="text-lg pt-1 cursor-pointer"
+              badgeContent={4}
+              color="secondary"
+            >
               <GoBell color="action" />
             </Badge>
             <Tooltip title="Account settings">

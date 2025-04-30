@@ -1,5 +1,4 @@
 const db = require("../config/db");
-const bcrypt = require("bcryptjs");
 
 // Kullanıcıyı email ile bul
 const findUserByEmail = (email) => {
@@ -15,9 +14,9 @@ const findUserByEmail = (email) => {
   });
 };
 
-// Şifre doğrulama
-const validatePassword = async (inputPassword, storedPassword) => {
-  return await bcrypt.compare(inputPassword, storedPassword);
+// Şifre doğrulama (hash kullanmadan düz karşılaştırma)
+const validatePassword = (inputPassword, storedPassword) => {
+  return inputPassword === storedPassword;
 };
 
 module.exports = {
