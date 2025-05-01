@@ -4,10 +4,10 @@ const mysql = require("mysql2");
 const router = express.Router();
 
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "Emre541523.",
-  database: "VetKim",
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "Emre541523.",
+  database: process.env.DB_NAME || "VetKim",
 });
 
 db.connect((err) => {
@@ -30,10 +30,12 @@ router.get("/clinics", (req, res) => {
   db.query(sql, (err, results) => {
     if (err) {
       console.error("Database query error:", err.sqlMessage);
-      return res.status(500).json({ error: "Database error", details: err.sqlMessage });
+      return res
+        .status(500)
+        .json({ error: "Database error", details: err.sqlMessage });
     }
 
-    res.status(200).json(results); 
+    res.status(200).json(results);
   });
 });
 
@@ -73,7 +75,9 @@ router.get("/search", (req, res) => {
   db.query(sql, params, (err, results) => {
     if (err) {
       console.error("Database query error:", err.sqlMessage);
-      return res.status(500).json({ error: "Database error", details: err.sqlMessage });
+      return res
+        .status(500)
+        .json({ error: "Database error", details: err.sqlMessage });
     }
 
     res.status(200).json(results);
