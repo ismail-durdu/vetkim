@@ -73,7 +73,7 @@ function Profile() {
   }, []);
 
   return (
-    <div className="px-5 lg:px-20">
+    <div className="px-5 pb-30 lg:px-20 ">
       <div className="profile"></div>
 
       <div className="mb-5 mt-2 flex flex-row justify-between items-center">
@@ -84,7 +84,7 @@ function Profile() {
             alt=""
           />
           <div>
-            <h1>
+            <h1 className="lg:text-lg font-bold">
               {userData?.user_name} {userData?.user_lastname}
             </h1>
             <p className="opacity-60">{userData?.user_email}</p>
@@ -93,14 +93,14 @@ function Profile() {
         {editMode ? (
           <div
             onClick={closeEditMode}
-            className="flex flex-row cursor-pointer items-center px-4 py-1 bg-green-400 rounded-lg text-white"
+            className="flex flex-row cursor-pointer items-center px-4 py-1 bg-gradient-to-r from-blue-400 to-purple-300 rounded-lg text-white"
           >
             <FaCheck /> Apply
           </div>
         ) : (
           <div
             onClick={openEditMode}
-            className="flex flex-row cursor-pointer items-center px-4 py-1 bg-blue-400 rounded-lg text-white"
+            className="flex flex-row cursor-pointer items-center px-4 py-1 bg-gradient-to-r from-purple-400 to-blue-300 rounded-lg text-white"
           >
             <MdEdit /> Edit
           </div>
@@ -109,100 +109,136 @@ function Profile() {
       {editMode ? (
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
           <div>
-            <p>First Name</p>
+            <p className="font-bold">First Name</p>
             <input
-              className="bg-gray-100 rounded w-full px-2 py-2"
+              className="bg-gray-100 border-2 border-blue-300 outline-none rounded w-full px-2 py-2 focus:border-blue-600"
               type="text"
               placeholder="Name Surname"
               value={userData?.user_name}
+              onChange={(e) =>
+                setUserData((prev) => ({ ...prev, user_name: e.target.value }))
+              }
             />
           </div>
           <div>
-            <p>Last Name</p>
+            <p className="font-bold">Last Name</p>
             <input
-              className="bg-gray-100 rounded w-full px-2 py-2"
+              className="bg-gray-100 border-2 border-blue-300 outline-none rounded w-full px-2 py-2 focus:border-blue-600"
               type="text"
               placeholder="Last Name"
               value={userData?.user_lastname}
+              onChange={(e) =>
+                setUserData((prev) => ({
+                  ...prev,
+                  user_lastname: e.target.value,
+                }))
+              }
             />
           </div>
           <div>
-            <p>Gender</p>
+            <p className="font-bold">Gender</p>
             <input
-              className="bg-gray-100 rounded w-full px-2 py-2"
+              className="bg-gray-100 border-2 border-blue-300 outline-none rounded w-full px-2 py-2 focus:border-blue-600"
               type="text"
               placeholder="Gender"
               value={userData?.user_gender}
+              onChange={(e) =>
+                setUserData((prev) => ({
+                  ...prev,
+                  user_gender: e.target.value,
+                }))
+              }
             />
           </div>
           <div>
-            <p>Country</p>
+            <p className="font-bold">Country</p>
             <input
-              className="bg-gray-100 rounded w-full px-2 py-2"
+              className="bg-gray-100 border-2 border-blue-300 outline-none rounded w-full px-2 py-2 focus:border-blue-600"
               type="text"
               placeholder="Country"
               value="Turkey"
             />
           </div>
           <div>
-            <p>Age</p>
+            <p className="font-bold">Age</p>
             <input
-              className="bg-gray-100 rounded w-full px-2 py-2"
+              className="bg-gray-100 border-2 border-blue-300 outline-none rounded w-full px-2 py-2 focus:border-blue-600"
               type="text"
               placeholder="Language"
               value={userData?.user_old}
+              onChange={(e) =>
+                setUserData((prev) => ({
+                  ...prev,
+                  user_old: parseInt(e.target.value),
+                }))
+              }
             />
           </div>
           <div>
-            <p>Province</p>
+            <p className="font-bold">Province</p>
             <input
-              className="bg-gray-100 rounded w-full px-2 py-2"
+              className="bg-gray-100 border-2 border-blue-300 outline-none rounded w-full px-2 py-2 focus:border-blue-600"
               type="text"
               placeholder="Province"
               value={userData?.province}
+              onChange={(e) =>
+                setUserData((prev) => ({
+                  ...prev,
+                  location_id: parseInt(e.target.value),
+                }))
+              }
             />
           </div>
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
           <div>
-            <p>First Name</p>
-            <p className="bg-gray-100 rounded w-full px-2 py-2">
+            <p className="font-bold">First Name</p>
+            <p className="bg-gray-100 border-2 border-purple-500 rounded w-full px-2 py-2">
               {userData?.user_name}
             </p>
           </div>
           <div>
-            <p>Last Name</p>
-            <p className="bg-gray-100 rounded w-full px-2 py-2">
+            <p className="font-bold">Last Name</p>
+            <p className="bg-gray-100 border-2 border-purple-500 rounded w-full px-2 py-2">
               {userData?.user_lastname}
             </p>
           </div>
           <div>
-            <p>Gender</p>
-            <p className="bg-gray-100 rounded w-full px-2 py-2">
+            <p className="font-bold">Gender</p>
+            <p className="bg-gray-100 border-2 border-purple-500 rounded w-full px-2 py-2">
               {userData?.user_gender}
             </p>
           </div>
           <div>
-            <p>Country</p>
-            <p className="bg-gray-100 rounded w-full px-2 py-2">Turkey</p>
+            <p className="font-bold">Country</p>
+            <p className="bg-gray-100 border-2 border-purple-500 rounded w-full px-2 py-2">
+              Turkey
+            </p>
           </div>
           <div>
-            <p>Age</p>
-            <p className="bg-gray-100 rounded w-full px-2 py-2">
+            <p className="font-bold">Age</p>
+            <p className="bg-gray-100 border-2 border-purple-500  rounded w-full px-2 py-2">
               {userData?.user_old}
             </p>
           </div>
           <div>
-            <p>Province</p>
-            <p className="bg-gray-100 rounded w-full px-2 py-2">
+            <p className="font-bold">Province</p>
+            <p className="bg-gray-100 border-2 border-purple-500 rounded w-full px-2 py-2">
               {userData?.province}
             </p>
           </div>
         </div>
       )}
 
-      <div className="flex flex-col mt-10 pet relative">
+      <div className="mt-10 lg:mt-24 mb-4 text-2xl lg:text-3xl font-bold text-purple-800 font-sans tracking-wide flex items-center gap-3">
+        🐾{" "}
+        <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-blue-600 bg-clip-text text-transparent">
+          Pet Information
+        </span>
+      </div>
+
+      <div className="flex flex-col  pet relative">
         <div className="grid grid-cols-4 gradientblue justify-between items-center py-3">
           <h1 className="text-center">Pet Name</h1>
           <h1 className="text-center">Pet Type</h1>
@@ -213,44 +249,35 @@ function Profile() {
         <Myvet />
       </div>
 
-      <button className="flex flex-row items-center px-4 py-1 my-5 gap-2 bg-blue-100 text-blue-500 rounded-lg ">
+      <button className="flex flex-row items-center px-4 py-1 my-5 gap-2 bg-purple-300 hover:bg-purple-600 hover:scale-105 transition-all duration-200 text-white rounded-lg shadow-md">
         <FaPlus /> Add New Pet
       </button>
+
+      <div className="mt-10 lg:mt-24 mb-4 text-2xl lg:text-3xl font-bold text-purple-800 font-sans tracking-wide flex items-center gap-3">
+        <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-blue-600 bg-clip-text text-transparent">
+          Contact Information
+        </span>
+      </div>
 
       <div>
         <h1 className="font-bold ">My E-mail Address</h1>
         <div className="flex flex-row items-center gap-2 my-3">
-          <div className="bg-blue-100 p-1.5 rounded-full text-blue-500">
+          <div className="bg-purple-400 p-1.5 rounded-full text-white">
             <IoIosMail />
           </div>
           <p className="opacity-70">{userData?.user_email}</p>
         </div>
-
-        <button className="flex flex-row items-center px-4 py-1 my-5 gap-2 bg-blue-100 text-blue-500 rounded-lg ">
-          <FaPlus /> Add E-mail Address
-        </button>
       </div>
 
       <div>
         <h1 className="font-bold ">My Phone Number</h1>
         <div className="flex flex-row items-center gap-2 my-3">
-          <div className="bg-blue-100 p-1.5 rounded-full text-blue-500">
+          <div className="bg-purple-400 p-1.5 rounded-full text-white">
             <MdCall />
           </div>
           <p className="opacity-70">{userData?.user_phone}</p>
         </div>
-
-        <button className="flex flex-row items-center px-4 py-1 my-5 gap-2 bg-blue-100 text-blue-500 rounded-lg  ">
-          <FaPlus /> Add Phone Number
-        </button>
       </div>
-
-      <button
-        onClick={() => navigate("/calendar")}
-        className="flex flex-row items-center px-4 py-2 my-5 gap-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
-      >
-        📅 Go to Calendar
-      </button>
     </div>
   );
 }
