@@ -47,7 +47,7 @@ db.connect((err) => {
 router.get("/", authenticate, (req, res) => {
   const userId = req.user.id;
 
-  const query = "SELECT * FROM users WHERE user_id = ?";
+  const query = "SELECT * FROM users INNER JOIN location USING(location_id) WHERE user_id = ?";
   db.query(query, [userId], (err, results) => {
     if (err) {
       console.error("Veritabanı hatası:", err);

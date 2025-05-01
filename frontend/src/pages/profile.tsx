@@ -24,6 +24,7 @@ interface User {
   user_country: string;
   location_id: number;
   user_province: string;
+  province: string;
 }
 
 function Profile() {
@@ -158,7 +159,7 @@ function Profile() {
               className="bg-gray-100 rounded w-full px-2 py-2"
               type="text"
               placeholder="Province"
-              value={userData?.location_id}
+              value={userData?.province}
             />
           </div>
         </div>
@@ -195,7 +196,7 @@ function Profile() {
           <div>
             <p>Province</p>
             <p className="bg-gray-100 rounded w-full px-2 py-2">
-              {userData?.location_id}
+              {userData?.province}
             </p>
           </div>
         </div>
