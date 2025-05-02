@@ -59,7 +59,13 @@ function main2() {
         {cards.map((card, index) => (
           <SwiperSlide key={index}>
             <div className="w-full h-50 bg-white shadow-lg border border-purple-400 rounded-lg p-6 transition-all duration-300 ease-in-out">
-              <p className="font-bold text-lg text-purple-600">{card.title}</p>
+              <p className="font-bold text-lg " 
+                 style={{
+                  background: "linear-gradient(to right, #DE4396, #0D1C9F)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                 }}
+              >{card.title}</p>
               <p className="text-gray-700">{card.content}</p>
             </div>
           </SwiperSlide>

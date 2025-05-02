@@ -24,3 +24,36 @@
 .header {
   box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
 }
+
+
+
+.gradient-hover-text-underline {
+  position: relative;
+  display: inline-block;
+  color: black;
+  transition: all 0.3s ease;
+}
+
+.gradient-hover-text-underline:hover {
+  background: linear-gradient(to right, #f6b1b6, #406AFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-hover-text-underline::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(to right, #DE4396, #0D1C9F);
+  transition: width 0.4s ease;
+  border-radius: 1200px;
+}
+
+.gradient-hover-text-underline:hover::after {
+  width: 100%;
+  left: 0;
+  right: auto;
+}

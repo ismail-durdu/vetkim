@@ -25,7 +25,14 @@ function main1() {
             </p>
           </div>
 
-          <Link className="bg-purple-400 px-4 py-1.5  rounded" to={"/signup"}>
+          <Link 
+          className="px-4 py-1.5  rounded" 
+          to={"/signup"}
+          style={{
+            background: "linear-gradient(to right, #DE4396, #0D1C9F)",
+            color: "white"
+            }}>
+              
             Let's get started!
           </Link>
         </div>

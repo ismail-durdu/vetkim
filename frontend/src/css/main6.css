@@ -7,12 +7,10 @@
 .main6btn {
   background: linear-gradient(
     to right,
-    #a40de5,
-    #ad26e2,
-    #b537df,
-    #bc45dc,
-    #c252da
+    #DE4396,
+    #0D1C9F
   );
+  border-radius: 20px;
 }
 .main6 {
   background: linear-gradient(

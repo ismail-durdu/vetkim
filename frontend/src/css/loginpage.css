@@ -1,11 +1,8 @@
 .a {
   background: linear-gradient(
     to bottom,
-    #f231d1,
-    #e448d7,
-    #d659da,
-    #c865dc,
-    #bb6fdc
+    #f6b1b6,
+    #406AFF
   );
   -webkit-background-clip: text;
   color: transparent;
@@ -14,11 +11,8 @@
 .b {
   background: linear-gradient(
     to right,
-    #bb6fdc,
-    #c865dc,
-    #d659da,
-    #e448d7,
-    #f231d1
+    #DE4396,
+    #0D1C9F
   );
   -webkit-background-clip: text;
   color: transparent;

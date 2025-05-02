@@ -148,31 +148,31 @@ function header() {
         <div className="hidden lg:flex text-xl flex-row gap-5">
           <Link
             to={"/"}
-            className="transition-colors duration-300 hover:text-purple-400"
+            className="gradient-hover-text-underline"
           >
             Home
           </Link>
           <Link
             to={"/aboutus"}
-            className="transition-colors duration-300 hover:text-purple-400"
+            className="gradient-hover-text-underline"
           >
             About Us
           </Link>
           <Link
             to={"/features"}
-            className="transition-colors duration-300 hover:text-purple-400"
+            className="gradient-hover-text-underline"
           >
             Features
           </Link>
           <Link
             to={"/clinics"}
-            className="transition-colors duration-300 hover:text-purple-400"
+            className="gradient-hover-text-underline"
           >
             Veterinary Clinics
           </Link>
           <Link
             to={"/blog"}
-            className="transition-colors duration-300 hover:text-purple-400"
+            className="gradient-hover-text-underline"
           >
             Blogs
           </Link>
@@ -273,8 +273,12 @@ function header() {
       ) : (
         <div className="flex flex-row gap-2">
           <Link
-            className="bg-purple-400 px-3 py-1 rounded cursor-pointer"
+            className="px-3 py-1 rounded cursor-pointer"
             to={"/login"}
+            style={{
+              background: "linear-gradient(to right, #DE4396, #0D1C9F)",
+              color: "white"               
+             }}
           >
             Log in
           </Link>
@@ -282,6 +286,10 @@ function header() {
           <Link
             className="bg-purple-400 px-3 py-1 rounded cursor-pointer"
             to={"/signup"}
+            style={{
+              background: "linear-gradient(to right, #DE4396, #0D1C9F)",
+              color: "white"
+             }}
           >
             Sign up
           </Link>
