@@ -46,14 +46,6 @@ function header() {
   };
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const getAvatar = () => {
-    if (userData?.user_gender === "Erkek") {
-      return avatarMale;
-    } else if (userData?.user_gender === "Kadin") {
-      return avatarFemale;
-    }
-    return avatar;
-  };
 
   const [userData, setUserData] = useState<User>(null!);
 
@@ -80,6 +72,14 @@ function header() {
         console.error("Hata:", error);
       });
   }, []);
+  const getAvatar = () => {
+    if (userData?.user_gender === "Erkek") {
+      return avatarMale;
+    } else if (userData?.user_gender === "Kadin") {
+      return avatarFemale;
+    }
+    return avatar;
+  };
   const exit = () => {
     const token = localStorage.getItem("token");
 
