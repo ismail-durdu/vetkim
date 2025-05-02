@@ -26,12 +26,9 @@ function main1() {
           </div>
 
           <Link 
-          className="px-4 py-1.5  rounded" 
+          className="main6btn" 
           to={"/signup"}
-          style={{
-            background: "linear-gradient(to right, #DE4396, #0D1C9F)",
-            color: "white"
-            }}>
+          >
               
             Let's get started!
           </Link>
