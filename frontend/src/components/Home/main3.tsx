@@ -6,6 +6,7 @@ import "../../css/main3.css";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import { IoArrowForwardCircleOutline } from "react-icons/io5";
 import dot2 from "../../assets/dot2.svg";
+import "../../css/secondary-button.css";
 
 function main3() {
   return (
@@ -25,8 +26,12 @@ function main3() {
             for you and your pet.
           </p>
           <div className="flex flex-row items-center text-purple-800 gap-2">
-            <Link to={"/notFound"}>See more Informations</Link>
-            <FaArrowRight />
+            <Link
+              className="btn flex flex-row gap-2 items-center"
+              to={"/notFound"}
+            >
+              See more Informations <FaArrowRight />
+            </Link>
           </div>
         </div>
 

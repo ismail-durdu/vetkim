@@ -3,9 +3,7 @@ import logo from "../assets/vetkim-logo.jpg";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../store/store";
-import { GoBell } from "react-icons/go";
-import { RxAvatar } from "react-icons/rx";
-import Badge from "@mui/material/Badge";
+
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
@@ -13,17 +11,18 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import { FaBookmark } from "react-icons/fa";
+
 import Tooltip from "@mui/material/Tooltip";
 import { IoMdPersonAdd } from "react-icons/io";
 import { AiFillSetting } from "react-icons/ai";
 import { MdLogout } from "react-icons/md";
-import { TbVaccine } from "react-icons/tb";
-import Logo from "../assets/avatar.png";
+
 import { logout } from "../store/appSlice";
 import avatarMale from "../assets/avatars/male.png";
 import avatarFemale from "../assets/avatars/female.png";
 import avatar from "../assets/avatar.png";
+import "../css/headerbutton.css";
+import "../css/navbarbutton.css";
 
 interface User {
   user_email: string;
@@ -110,7 +109,7 @@ function header() {
   };
 
   return (
-    <div className="header flex flex-row justify-between items-center px-4 py-2 text-sm lg:text-md lg:px-20 lg:py-3">
+    <div className="header flex flex-row py-2 justify-between items-center px-4  text-sm lg:text-md lg:px-20 lg:py-2">
       <Link to={"/"}>
         <div className="flex flex-row items-center">
           <img className="mr-1" src={logo} alt="" />
@@ -118,62 +117,35 @@ function header() {
         </div>
       </Link>
       {login ? (
-        <div className="hidden lg:flex text-xl flex-row gap-10">
-          <Link
-            to={"/"}
-            className="transition-colors duration-300 hover:text-purple-400"
-          >
+        <div className="hidden lg:flex text-xl flex-row gap-10 ">
+          <Link to={"/"} className="headerbutton">
             Home
           </Link>
-          <Link
-            to={"/clinics"}
-            className="transition-colors duration-300 hover:text-purple-400"
-          >
+          <Link to={"/clinics"} className="headerbutton">
             Veterinary Clinics
           </Link>
-          <Link
-            to={"/blog"}
-            className="transition-colors duration-300 hover:text-purple-400"
-          >
+          <Link to={"/blog"} className="headerbutton">
             Blogs
           </Link>
-          <Link
-            to={"/calendar"}
-            className="transition-colors duration-300 hover:text-purple-400"
-          >
+          <Link to={"/calendar"} className="headerbutton">
             Calendar
           </Link>
         </div>
       ) : (
         <div className="hidden lg:flex text-xl flex-row gap-5">
-          <Link
-            to={"/"}
-            className="gradient-hover-text-underline"
-          >
+          <Link to={"/"} className="headerbutton">
             Home
           </Link>
-          <Link
-            to={"/aboutus"}
-            className="gradient-hover-text-underline"
-          >
+          <Link to={"/aboutus"} className="headerbutton">
             About Us
           </Link>
-          <Link
-            to={"/features"}
-            className="gradient-hover-text-underline"
-          >
+          <Link to={"/features"} className="headerbutton">
             Features
           </Link>
-          <Link
-            to={"/clinics"}
-            className="gradient-hover-text-underline"
-          >
+          <Link to={"/clinics"} className="headerbutton">
             Veterinary Clinics
           </Link>
-          <Link
-            to={"/blog"}
-            className="gradient-hover-text-underline"
-          >
+          <Link to={"/blog"} className="headerbutton">
             Blogs
           </Link>
         </div>
@@ -183,23 +155,15 @@ function header() {
           <Box
             sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
           >
-            <Badge
-              className="text-lg pt-1 cursor-pointer"
-              badgeContent={4}
-              color="secondary"
-            >
-              <GoBell color="action" />
-            </Badge>
-            <Tooltip title="Account settings">
+            <Tooltip className="absolute" title="Account settings">
               <IconButton
                 onClick={handleClick}
                 size="small"
-                sx={{ ml: 2 }}
                 aria-controls={open ? "account-menu" : undefined}
                 aria-haspopup="true"
                 aria-expanded={open ? "true" : undefined}
               >
-                <Avatar sx={{ width: 32, height: 32 }}>
+                <Avatar sx={{ width: 30, height: 30 }}>
                   <img src={getAvatar()} alt="" />
                 </Avatar>
               </IconButton>
@@ -271,18 +235,12 @@ function header() {
           </Menu>
         </React.Fragment>
       ) : (
-        <div className="flex flex-row gap-2">
-          <Link
-            className="main6btn"
-            to={"/login"}
-          >
+        <div className="flex flex-row gap-2 my-1.5">
+          <Link className="button" to={"/login"}>
             Log in
           </Link>
 
-          <Link
-            className="main6btn"
-            to={"/signup"}
-          >
+          <Link className="button" to={"/signup"}>
             Sign up
           </Link>
         </div>

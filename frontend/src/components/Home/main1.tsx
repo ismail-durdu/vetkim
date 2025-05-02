@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import dot from "../../assets/dot.svg";
 import "../../css/header.css";
 import "../../css/main6.css";
+import "../../css/secondary-button.css";
 
 function main1() {
   return (
@@ -26,7 +27,10 @@ function main1() {
             </p>
           </div>
 
-          <Link className="bg-purple-400 px-4 py-1.5  rounded" to={"/signup"}>
+          <Link
+            className="btn flex flex-row gap-2 items-center w-40"
+            to={"/signup"}
+          >
             Let's get started!
           </Link>
         </div>
