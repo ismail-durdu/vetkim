@@ -273,23 +273,15 @@ function header() {
       ) : (
         <div className="flex flex-row gap-2">
           <Link
-            className="px-3 py-1 rounded cursor-pointer"
+            className="main6btn"
             to={"/login"}
-            style={{
-              background: "linear-gradient(to right, #DE4396, #0D1C9F)",
-              color: "white"               
-             }}
           >
             Log in
           </Link>
 
           <Link
-            className="bg-purple-400 px-3 py-1 rounded cursor-pointer"
+            className="main6btn"
             to={"/signup"}
-            style={{
-              background: "linear-gradient(to right, #DE4396, #0D1C9F)",
-              color: "white"
-             }}
           >
             Sign up
           </Link>
