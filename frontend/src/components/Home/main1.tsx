@@ -3,6 +3,7 @@ import vetkim from "../../assets/vetkim1.jpg";
 import { Link } from "react-router-dom";
 import dot from "../../assets/dot.svg";
 import "../../css/header.css";
+import "../../css/main6.css";
 
 function main1() {
   return (
@@ -25,11 +26,7 @@ function main1() {
             </p>
           </div>
 
-          <Link 
-          className="main6btn" 
-          to={"/signup"}
-          >
-              
+          <Link className="bg-purple-400 px-4 py-1.5  rounded" to={"/signup"}>
             Let's get started!
           </Link>
         </div>
