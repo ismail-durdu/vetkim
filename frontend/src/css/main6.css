@@ -6,37 +6,35 @@
 }
 
 .main6btn {
-  position: relative;
-  padding: 0.5rem 1.5rem;
-  font-weight: 600;
-  border-radius: 999px;
-  background: white;
-  color: black;
-  z-index: 0;
-  transition: all 0.4s ease;
-  overflow: hidden;
-  border: none;
+  background: linear-gradient(
+    to right,
+    #a40de5,
+    #ad26e2,
+    #b537df,
+    #bc45dc,
+    #c252da #de4396,
+    #0d1c9f
+  );
+  border-radius: 20px;
+}
+.main6 {
+  background: linear-gradient(
+    to right top,
+    #b0d4e7,
+    #c1d6e8,
+    #cfd9e7,
+    #dadde5,
+    #e2e2e3
+  );
 }
 
 .main6btn::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  padding: 2px;
-  background: linear-gradient(to right, #DE4396, #0D1C9F);
-  border-radius: inherit;
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  z-index: -1;
-  transition: opacity 0.4s ease;
-  opacity: 1;
+  background: linear-gradient(to right, #de4396, #0d1c9f);
+  border-radius: 20px;
 }
 
 .main6btn:hover {
-  background: linear-gradient(to right, #DE4396, #0D1C9F);
+  background: linear-gradient(to right, #de4396, #0d1c9f);
   color: white;
 }
 
