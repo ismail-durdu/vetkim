@@ -71,14 +71,7 @@ function header() {
         console.error("Hata:", error);
       });
   }, []);
-  const getAvatar = () => {
-    if (userData?.user_gender === "Erkek") {
-      return avatarMale;
-    } else if (userData?.user_gender === "Kadin") {
-      return avatarFemale;
-    }
-    return avatar;
-  };
+
   const exit = () => {
     const token = localStorage.getItem("token");
 
@@ -107,7 +100,14 @@ function header() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  const getAvatar = () => {
+    if (userData?.user_gender === "Erkek") {
+      return avatarMale;
+    } else if (userData?.user_gender === "Kadin") {
+      return avatarFemale;
+    }
+    return avatar;
+  };
   return (
     <div className="header flex flex-row py-2 justify-between items-center px-4  text-sm lg:text-md lg:px-20 lg:py-2">
       <Link to={"/"}>
