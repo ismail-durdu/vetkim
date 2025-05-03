@@ -20,12 +20,9 @@ function footer() {
           </Link>
           <div>
             <p className="opacity-60 leading-loose">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-              molestias, distinctio dolor, minus perspiciatis vitae ad quam
-              officiis eveniet adipisci illum enim amet reiciendis. Hic
-              perferendis debitis dolor asperiores modi earum ad esse,
-              praesentium ab maiores assumenda nemo laborum ipsam maxime atque
-              ex tempora quae cum. Provident non quo quisquam?
+              The health and happiness of our furry friends mean the world to
+              us. Our goal is to help pet owners easily track their pets’ health
+              records, vaccinations, and upcoming appointments—all in one place.
             </p>
           </div>
         </div>

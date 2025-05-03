@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaEye, FaArrowRight } from "react-icons/fa6";
-import logo1 from "../assets/logos/logo5.svg"; 
-import ClinicBox from "./ClinicBox"; 
+import logo1 from "../assets/logos/logo5.svg";
+import ClinicBox from "./ClinicBox";
 
 interface IClinic {
   clinic_id?: number;
@@ -36,7 +36,7 @@ const Clinic: React.FC<{ clinic: IClinic }> = ({ clinic }) => {
         <div className="flex flex-row justify-between mt-5">
           <button
             className="flex flex-row items-center gap-2 text-purple-700 px-4 py-2 border border-purple-700 rounded-md hover:bg-purple-700 hover:text-white transition-all"
-            onClick={() => setIsBoxOpen(true)} 
+            onClick={() => setIsBoxOpen(true)}
           >
             See More <FaEye />
           </button>
@@ -48,7 +48,10 @@ const Clinic: React.FC<{ clinic: IClinic }> = ({ clinic }) => {
       )}
 
       {isBoxOpen && clinic.clinic_name && clinic.clinic_id && (
-        <ClinicBox clinicId={clinic.clinic_id} onClose={() => setIsBoxOpen(false)} />
+        <ClinicBox
+          clinicId={clinic.clinic_id}
+          onClose={() => setIsBoxOpen(false)}
+        />
       )}
     </div>
   );

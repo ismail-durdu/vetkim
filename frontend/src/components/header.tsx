@@ -11,6 +11,7 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
+import { FaCalendarAlt } from "react-icons/fa";
 
 import Tooltip from "@mui/material/Tooltip";
 import { IoMdPersonAdd } from "react-icons/io";
@@ -116,40 +117,25 @@ function header() {
           <p className="font-semibold">VETKİM</p>
         </div>
       </Link>
-      {login ? (
-        <div className="hidden lg:flex text-xl flex-row gap-10 ">
-          <Link to={"/"} className="headerbutton">
-            Home
-          </Link>
-          <Link to={"/clinics"} className="headerbutton">
-            Veterinary Clinics
-          </Link>
-          <Link to={"/blog"} className="headerbutton">
-            Blogs
-          </Link>
-          <Link to={"/calendar"} className="headerbutton">
-            Calendar
-          </Link>
-        </div>
-      ) : (
-        <div className="hidden lg:flex text-xl flex-row gap-5">
-          <Link to={"/"} className="headerbutton">
-            Home
-          </Link>
-          <Link to={"/aboutus"} className="headerbutton">
-            About Us
-          </Link>
-          <Link to={"/features"} className="headerbutton">
-            Features
-          </Link>
-          <Link to={"/clinics"} className="headerbutton">
-            Veterinary Clinics
-          </Link>
-          <Link to={"/blog"} className="headerbutton">
-            Blogs
-          </Link>
-        </div>
-      )}
+
+      <div className="hidden lg:flex text-xl flex-row gap-5">
+        <Link to={"/"} className="headerbutton">
+          Home
+        </Link>
+        <Link to={"/aboutus"} className="headerbutton">
+          About Us
+        </Link>
+        <Link to={"/features"} className="headerbutton">
+          Features
+        </Link>
+        <Link to={"/clinics"} className="headerbutton">
+          Veterinary Clinics
+        </Link>
+        <Link to={"/blog"} className="headerbutton">
+          Blogs
+        </Link>
+      </div>
+
       {login ? (
         <React.Fragment>
           <Box
@@ -214,6 +200,15 @@ function header() {
             </Link>
 
             <Divider />
+            <Link to={"/calendar"}>
+              <MenuItem onClick={handleClose}>
+                <ListItemIcon>
+                  <FaCalendarAlt />
+                </ListItemIcon>
+                Calendar
+              </MenuItem>
+            </Link>
+
             <MenuItem onClick={handleClose}>
               <ListItemIcon>
                 <IoMdPersonAdd />

@@ -28,7 +28,7 @@ function main3() {
           <div className="flex flex-row items-center text-purple-800 gap-2">
             <Link
               className="btn flex flex-row gap-2 items-center"
-              to={"/notFound"}
+              to={"/aboutus"}
             >
               See more Informations <FaArrowRight />
             </Link>
@@ -42,10 +42,7 @@ function main3() {
           <h1 className="text-xl lg:text-3xl">Meet the Experts Caring</h1>
           <h1 className="text-xl font-bold lg:text-3xl mt-2">for Your Pets</h1>
         </div>
-        <div className="hidden md:flex flex-row absolute right-20 gap-4 bottom-20 text-4xl text-purple-500">
-          <IoArrowBackCircleOutline />
-          <IoArrowForwardCircleOutline />
-        </div>
+
         <div>
           <img className="dot2 w-8 lg:w-15" src={dot2} alt="" />
         </div>
