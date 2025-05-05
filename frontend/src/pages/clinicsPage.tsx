@@ -3,7 +3,6 @@ import photo from "../assets/vetkim1.jpg";
 import Clinic from "../components/clinic";
 import { IoSearchOutline, IoFilter } from "react-icons/io5";
 import Footer from "../components/footer";
-import AppointmentForm from "../components/appointmentForm";
 
 interface IClinic {
   clinic_id: number;
@@ -17,8 +16,6 @@ function ClinicsPage() {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [searchType, setSearchType] = useState<string>("clinic_name");
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
-
-  const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
 
   useEffect(() => {
     const fetchClinics = async () => {
@@ -48,12 +45,7 @@ function ClinicsPage() {
         `http://localhost:8000/api/search?q=${query}&type=${searchType}`
       );
       const data = await response.json();
-
-      if (searchType === "province") {
-        setClinics(data);
-      } else {
-        setClinics(data);
-      }
+      setClinics(data);
     } else {
       setClinics(originalClinics);
     }
@@ -127,14 +119,6 @@ function ClinicsPage() {
           </p>
         )}
       </div>
-      {isAppointmentOpen &&
-        clinics &&
-        clinics.map((clinic) => (
-          <AppointmentForm
-            clinicId={clinic.clinic_id}
-            onClose={() => setIsAppointmentOpen(false)}
-          />
-        ))}
 
       <Footer />
     </div>
@@ -142,3 +126,4 @@ function ClinicsPage() {
 }
 
 export default ClinicsPage;
+

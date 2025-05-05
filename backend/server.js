@@ -2,21 +2,20 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 
-// Route dosyalarını içeri aktardık
 const authRoutes = require("./routes/Auth");
 const signupRoutes = require("./routes/signup");
 const clinicRoutes = require("./routes/clinic");
 const seeMoreRoutes = require("./routes/seeMore");
-const commentRoutes = require("./routes/comment"); // Yorumları ekledik ✅
+const commentRoutes = require("./routes/comment");
 const profileRoute = require("./routes/profile");
 const blogRoutes = require("./routes/blogs");
 const petRoutes = require("./routes/pet");
+const appoinmentRoutes = require("./routes/appoinment");
 const { router: logoutRoute, authenticate } = require("./routes/logout");
 
 dotenv.config();
 const app = express();
 
-// Middleware ayarları
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(
@@ -26,7 +25,6 @@ app.use(
   })
 );
 
-// API Route'ları
 app.use("/api/auth", authRoutes);
 app.use("/api/auth", signupRoutes);
 
@@ -36,7 +34,8 @@ app.use("/api", blogRoutes);
 app.use("/api", logoutRoute);
 app.use("/api", seeMoreRoutes);
 app.use("/api", petRoutes);
-app.use("/api", commentRoutes); // Yorumları API'ye dahil ettik ✅
+app.use("/api", appoinmentRoutes);
+app.use("/api", commentRoutes);
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
