@@ -11,10 +11,12 @@
   position: relative;
   transition: all 1s;
   overflow: hidden;
+  z-index: 10;
 }
 
 .btn:hover {
   color: white;
+  z-index: 10;
 }
 
 .btn::before {

@@ -4,12 +4,17 @@ import Footer from "../components/footer";
 function BlogDetail() {
   useParams();
   const location = useLocation();
-  const { image, category, title, description, fullTextFirstPart, fullTextSecondPart} = location.state || {};
-
+  const {
+    image,
+    category,
+    title,
+    description,
+    fullTextFirstPart,
+    fullTextSecondPart,
+  } = location.state || {};
 
   return (
     <div className="px-6 md:px-20 py-10">
-      {/* GÖRSEL + METİN */}
       <div className="flex flex-col lg:flex-row gap-10 mb-10">
         <div className="lg:w-1/3">
           <img

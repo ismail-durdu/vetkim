@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import pet1 from "../assets/Image.jpg";
+
 import { LuArrowUpRight } from "react-icons/lu";
 import "../css/smallblog.css";
 
 interface Blog {
   blog_name: string;
   blog_text: string;
+  blog_image: string;
 }
 
 function SmallBlog({ blog }: { blog: Blog }) {
@@ -17,8 +18,8 @@ function SmallBlog({ blog }: { blog: Blog }) {
         className="smallblog pt-8 pb-8 px-5 cursor-pointer hover:scale-105 transition-all duration-300 ease-in-out rounded"
         onClick={() => setIsModalOpen(true)}
       >
-        <div>
-          <img className="w-full" src={pet1} alt="" />
+        <div className="flex justify-center">
+          <img className="w-5/6" src={`/blog/${blog.blog_image}`} alt="" />
         </div>
         <div>
           <div className="flex flex-row justify-between items-center">
@@ -43,9 +44,9 @@ function SmallBlog({ blog }: { blog: Blog }) {
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={pet1}
+              src={`/blog/${blog.blog_image}`}
               alt="Blog"
-              className="w-full  object-cover rounded-lg mb-4 shadow-md"
+              className="w-4/6 mx-auto  object-cover rounded-lg mb-4 shadow-md"
             />
 
             <h2 className="text-2xl font-semibold text-gray-900 mb-3">

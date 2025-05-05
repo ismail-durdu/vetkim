@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { GoSearch } from "react-icons/go";
 import SmallBlog from "../components/smallblog";
-import { FaArrowDown } from "react-icons/fa6";
+
 import Footer from "../components/footer";
 
 interface Blog {
   blog_id: number;
   blog_name: string;
   blog_text: string;
+  blog_image: string;
 }
 
 function pethealth() {

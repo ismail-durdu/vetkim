@@ -1,8 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { IoMdClose, IoMdMail, IoMdCall, IoMdPin, IoMdTime, IoMdPerson, IoMdChatbubbles, IoMdStar } from "react-icons/io";
-import logo1 from "../assets/logos/logo5.svg";
+import {
+  IoMdClose,
+  IoMdMail,
+  IoMdCall,
+  IoMdPin,
+  IoMdTime,
+  IoMdPerson,
+  IoMdChatbubbles,
+  IoMdStar,
+} from "react-icons/io";
+import logo1 from "../../public/clinic/1.svg";
 
-const ClinicBox: React.FC<{ clinicId: number; onClose: () => void }> = ({ clinicId, onClose }) => {
+const ClinicBox: React.FC<{ clinicId: number; onClose: () => void }> = ({
+  clinicId,
+  onClose,
+}) => {
   const [clinic, setClinic] = useState<any>(null);
   const [comments, setComments] = useState<any[]>([]);
 
@@ -23,12 +35,19 @@ const ClinicBox: React.FC<{ clinicId: number; onClose: () => void }> = ({ clinic
   return (
     <div className="fixed inset-0 flex justify-center items-center z-50 overflow-auto">
       <div className="bg-white p-6 rounded-xl w-3/5 h-auto max-w-2xl shadow-xl relative flex flex-col overflow-auto max-h-[70vh]">
-        <button onClick={onClose} className="absolute top-4 right-4 text-gray-600 hover:text-red-500">
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-600 hover:text-red-500"
+        >
           <IoMdClose size={32} />
         </button>
 
         <div className="flex justify-center mb-6">
-          <img src={logo1} alt="Clinic Logo" className="w-32 h-32 object-contain" />
+          <img
+            src={`/clinic/${clinic.clinic_image}`}
+            alt="Clinic Logo"
+            className="w-32 h-32 object-contain"
+          />
         </div>
 
         <div className="text-center">
@@ -51,20 +70,29 @@ const ClinicBox: React.FC<{ clinicId: number; onClose: () => void }> = ({ clinic
           </div>
           <div className="bg-teal-200 p-2 rounded-lg shadow-md flex items-center gap-2">
             <IoMdTime className="text-teal-700 text-lg" />
-            <p className="text-gray-800 text-sm">{clinic.start_time} - {clinic.end_time}</p>
+            <p className="text-gray-800 text-sm">
+              {clinic.start_time} - {clinic.end_time}
+            </p>
           </div>
         </div>
 
         {/* Yorumlar - Ayrı Kutular & İkonlar */}
         <div className="mt-6 px-4 w-full">
-          <h3 className="text-lg font-bold text-gray-700 uppercase">COMMENTS</h3>
+          <h3 className="text-lg font-bold text-gray-700 uppercase">
+            COMMENTS
+          </h3>
           <div className="space-y-6 mt-3">
             {comments.length > 0 ? (
               comments.map((comment, index) => (
-                <div key={index} className="bg-gray-300 p-4 rounded-lg shadow-md border border-gray-400">
+                <div
+                  key={index}
+                  className="bg-gray-300 p-4 rounded-lg shadow-md border border-gray-400"
+                >
                   <div className="flex items-center gap-2">
                     <IoMdPerson className="text-gray-800 text-lg" />
-                    <p className="text-md font-semibold text-gray-800">{comment.user_name} {comment.user_lastname}</p> 
+                    <p className="text-md font-semibold text-gray-800">
+                      {comment.user_name} {comment.user_lastname}
+                    </p>
                   </div>
                   <div className="flex items-start gap-2 mt-2">
                     <IoMdChatbubbles className="text-gray-700 text-lg" />
@@ -87,7 +115,3 @@ const ClinicBox: React.FC<{ clinicId: number; onClose: () => void }> = ({ clinic
 };
 
 export default ClinicBox;
-
-
-
-

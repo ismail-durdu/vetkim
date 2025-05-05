@@ -20,9 +20,9 @@ db.connect((err) => {
 
 router.get("/clinics", (req, res) => {
   const sql = `
-    SELECT clinic.clinic_id, clinic.clinic_name, location.province 
+    SELECT clinic.clinic_id, clinic.clinic_name, location.province, clinic_image
     FROM clinic 
-    JOIN location ON clinic.location_id = location.location_id 
+    JOIN location ON clinic.location_id = location.location_id  
     ORDER BY location.province ASC, clinic.clinic_name ASC
     LIMIT 15;
   `;

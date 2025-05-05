@@ -1,13 +1,15 @@
 import React, { useState, useCallback } from "react";
 import { FaEye, FaArrowRight } from "react-icons/fa6";
-import logo1 from "../assets/logos/logo5.svg";
+import logo1 from "../../public/clinic/1.svg";
 import ClinicBox from "./ClinicBox";
-import AppointmentBox from "./AppointmentBox"; 
+import AppointmentBox from "./AppointmentBox";
+import "../css/secondary-button.css";
 
 interface IClinic {
   clinic_id?: number;
   clinic_name?: string;
   province?: string;
+  clinic_image?: string;
 }
 
 const defaultClinic: IClinic = {
@@ -25,12 +27,16 @@ const Clinic: React.FC<{ clinic?: IClinic }> = ({ clinic }) => {
   const openAppointment = useCallback(() => setIsAppointmentOpen(true), []);
   const closeAppointment = useCallback(() => setIsAppointmentOpen(false), []);
 
-  const clinicData = clinic || defaultClinic; 
+  const clinicData = clinic || defaultClinic;
 
   return (
     <div className="flex flex-col gap-4 bg-gray-100 px-5 lg:px-10 pb-10 pt-4 relative rounded-lg shadow-md">
       <div className="w-full">
-        <img className="w-2/3 mx-auto" src={logo1} alt="Clinic Logo" />
+        <img
+          className="w-2/3 mx-auto"
+          src={`/clinic/${clinicData.clinic_image}`}
+          alt="Clinic Logo"
+        />
       </div>
 
       <div className="self-center text-center">
@@ -41,14 +47,14 @@ const Clinic: React.FC<{ clinic?: IClinic }> = ({ clinic }) => {
       {clinicData.clinic_id && clinicData.clinic_name && (
         <div className="flex flex-row justify-between mt-5">
           <button
-            className="flex flex-row items-center gap-2 text-purple-700 px-4 py-2 border border-purple-700 rounded-md hover:bg-purple-700 hover:text-white transition-all"
+            className=" flex flex-row items-center gap-2 btn xl:w-5/12 justify-center"
             onClick={openBox}
           >
             See More <FaEye />
           </button>
 
           <button
-            className="flex flex-row items-center gap-2 text-purple-700 px-4 py-2 border border-purple-700 rounded-md hover:bg-purple-700 hover:text-white transition-all"
+            className="flex flex-row items-center gap-2 btn  justify-center"
             onClick={openAppointment}
           >
             Take Appointment <FaArrowRight />
@@ -57,15 +63,18 @@ const Clinic: React.FC<{ clinic?: IClinic }> = ({ clinic }) => {
       )}
 
       {isBoxOpen && clinicData?.clinic_id && (
-  <ClinicBox clinicId={clinicData.clinic_id} onClose={closeBox} />
-)} 
+        <ClinicBox clinicId={clinicData.clinic_id} onClose={closeBox} />
+      )}
 
       {isAppointmentOpen && clinicData?.clinic_id && (
-        <AppointmentBox appointmentId={clinicData.clinic_id} onClose={closeAppointment} clinicName={""} />
+        <AppointmentBox
+          appointmentId={clinicData.clinic_id}
+          onClose={closeAppointment}
+          clinicName={""}
+        />
       )}
     </div>
   );
 };
 
 export default Clinic;
-

@@ -1,8 +1,8 @@
 import React from "react";
-import logo1 from "../../assets/logos/logo5.svg";
-import logo2 from "../../assets/logos/Logo-6.svg";
-import logo3 from "../../assets/logos/Logo-7.svg";
-import logo4 from "../../assets/logos/logo9.svg";
+import logo1 from "../../../public/clinic/1.svg";
+import logo2 from "../../../public/clinic/2.svg";
+import logo3 from "../../../public/clinic/3.svg";
+import logo4 from "../../../public/clinic/4.svg";
 
 function main4() {
   return (

@@ -20,7 +20,7 @@ db.connect((err) => {
 });
 
 router.get("/blogs", (req, res) => {
-  const sql = `SELECT blog_id, blog_name, blog_text FROM blog ORDER BY blog_id DESC LIMIT 15`;
+  const sql = `SELECT blog_id, blog_name,blog_text ,blog_image  FROM blog ORDER BY blog_id DESC LIMIT 15`;
 
   db.query(sql, (err, results) => {
     if (err) {

@@ -8,6 +8,7 @@ interface IClinic {
   clinic_id: number;
   clinic_name: string;
   province: string;
+  clinic_image: string;
 }
 
 function ClinicsPage() {
@@ -126,4 +127,3 @@ function ClinicsPage() {
 }
 
 export default ClinicsPage;
-
