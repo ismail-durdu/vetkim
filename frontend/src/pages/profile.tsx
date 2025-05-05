@@ -13,6 +13,7 @@ import Myvet from "../components/myvet";
 import { useCallback, useEffect, useState } from "react";
 import avatarMale from "../assets/avatars/male.png";
 import avatarFemale from "../assets/avatars/female.png";
+import "../css/secondary-button.css";
 
 interface User {
   user_email: string;
@@ -25,6 +26,14 @@ interface User {
   location_id: number;
   user_province: string;
   province: string;
+}
+interface Pet {
+  pet_id: number;
+  pet_name: string;
+  type: string;
+  species: string;
+  pet_old: number;
+  pet_gender: string;
 }
 
 function Profile() {
@@ -47,29 +56,64 @@ function Profile() {
     dispatch(closeTheEditMode());
   }, [dispatch]);
   const [userData, setUserData] = useState<User>(null!);
+  const [petData, setPetData] = useState<Pet[]>(null!);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (!token) return;
+    if (!token) {
+      console.error("❌ Token eksik, giriş yapmalısın.");
+      return;
+    }
 
-    fetch("http://localhost:8000/api/profile", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Profil verisi alınamadı");
+    const fetchData = async () => {
+      try {
+        // Profil API çağrısı
+        const profileResponse = await fetch(
+          "http://localhost:8000/api/profile",
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!profileResponse.ok) {
+          throw new Error(
+            `Profil verisi alınamadı, HTTP Hata Kodu: ${profileResponse.status}`
+          );
         }
-        return response.json();
-      })
-      .then((data) => {
-        setUserData(data.user);
-      })
-      .catch((error) => {
-        console.error("Hata:", error);
-      });
+
+        const profileData = await profileResponse.json();
+        setUserData(profileData.user);
+
+        // Kullanıcının pet bilgilerini çekme
+        const petResponse = await fetch("http://localhost:8000/api/pets", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!petResponse.ok) {
+          throw new Error(
+            `Pet verisi alınamadı, HTTP Hata Kodu: ${petResponse.status}`
+          );
+        }
+
+        const petData = await petResponse.json();
+        setPetData(petData);
+
+        console.log("✅ Kullanıcı ve pet verisi başarıyla çekildi:", {
+          profileData,
+          petData,
+        });
+      } catch (err) {
+        console.error("❌ Veri çekme hatası oluştu:", err);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
@@ -239,14 +283,15 @@ function Profile() {
       </div>
 
       <div className="flex flex-col  pet relative">
-        <div className="grid grid-cols-4 gradientblue justify-between items-center py-3">
+        <div className="grid grid-cols-5 gradientblue justify-between items-center py-3">
           <h1 className="text-center">Pet Name</h1>
           <h1 className="text-center">Pet Type</h1>
+          <h1 className="text-center">Old</h1>
           <h1 className="text-center">Breed</h1>
           <h1 className="text-center">Gender</h1>
         </div>
-
-        <Myvet />
+        {petData &&
+          petData.map((pet: Pet) => <Myvet key={pet.pet_id} pet={pet} />)}
       </div>
 
       <button className="flex flex-row items-center px-4 py-1 my-5 gap-2 bg-purple-300 hover:bg-purple-600 hover:scale-105 transition-all duration-200 text-white rounded-lg shadow-md">

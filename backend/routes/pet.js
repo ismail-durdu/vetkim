@@ -1,7 +1,33 @@
 const express = require("express");
 const mysql = require("mysql2");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const router = express.Router();
+console.log("🔍 Decoded token:");
+
+// Middleware'i doğrudan burada tanımlıyoruz!
+const authenticate = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  const token = authHeader && authHeader.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json({ error: "Token bulunamadı" });
+  }
+
+  jwt.verify(
+    token,
+    process.env.JWT_SECRET || "gizli_anahtar",
+    (err, decoded) => {
+      if (err) {
+        return res.status(403).json({ error: "Geçersiz token" });
+      }
+      console.log("🔍 Decoded token:");
+      req.user = decoded;
+      next();
+    }
+  );
+};
 
 const db = mysql.createConnection({
   host: process.env.DB_HOST || "localhost",
@@ -18,18 +44,35 @@ db.connect((err) => {
   console.log("✅ MySQL connected successfully!");
 });
 
-router.get("/pets", (req, res) => {
-  const sql = `
-    SELECT p.pet_id, p.pet_name, p.pet_gender, p.pet_old, ps.type, ps.species 
-    FROM pet p 
+// Kullanıcının pet bilgilerini çekme API'si
+router.get("/pets", authenticate, (req, res) => {
+  const userId = req.user.id; // user_id olarak aldık
+
+  const sql = ` 
+    SELECT 
+      p.pet_id, 
+      p.pet_name, 
+      p.pet_gender, 
+      p.pet_old, 
+      ps.species,
+      ps.type
+    FROM user_pet up
+    JOIN pet p ON up.pet_id = p.pet_id
+    
     JOIN pet_species ps ON p.species_id = ps.species_id
-    ORDER BY p.pet_name ASC;
+    WHERE up.user_id = ?;
   `;
 
-  db.query(sql, (err, results) => {
+  db.query(sql, [userId], (err, results) => {
     if (err) {
-      console.error("Database query error:", err.sqlMessage);
-      return res.status(500).json({ error: "Database error", details: err.sqlMessage });
+      console.error("Veritabanı hatası:", err);
+      return res.status(500).json({ error: "Veritabanı hatası" });
+    }
+
+    if (results.length === 0) {
+      return res
+        .status(404)
+        .json({ error: "Bu kullanıcıya ait pet bulunamadı!" });
     }
 
     res.status(200).json(results);

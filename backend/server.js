@@ -10,6 +10,7 @@ const seeMoreRoutes = require("./routes/seeMore");
 const commentRoutes = require("./routes/comment"); // Yorumları ekledik ✅
 const profileRoute = require("./routes/profile");
 const blogRoutes = require("./routes/blogs");
+const petRoutes = require("./routes/pet");
 const { router: logoutRoute, authenticate } = require("./routes/logout");
 
 dotenv.config();
@@ -34,9 +35,10 @@ app.use("/api", clinicRoutes);
 app.use("/api", blogRoutes);
 app.use("/api", logoutRoute);
 app.use("/api", seeMoreRoutes);
+app.use("/api", petRoutes);
 app.use("/api", commentRoutes); // Yorumları API'ye dahil ettik ✅
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
-  console.log(`✅ Server is running on port ${PORT}`);
+  console.log("Server is running on port ${PORT}");
 });
