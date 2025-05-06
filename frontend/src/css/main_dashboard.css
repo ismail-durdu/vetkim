@@ -1,0 +1,165 @@
+.dashboard {
+    padding: 2rem;
+  }
+  
+
+  .middle-text {
+    flex: 1;
+    max-width: 300px;
+    color: #444;
+    font-size: 1.4rem;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  
+.gradient-text {
+    background: linear-gradient(to right, #d36ac2, #6157ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+  }
+  
+  .welcome {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #625f63;
+    font-weight: bold;
+  }
+  
+  .notes-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .notes-box {
+    background: linear-gradient(to right, #fcd8f6, #e0def6);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .dog-img {
+    max-width: 200px;
+    height: auto;
+  }
+  
+  .see-all {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #6157ff;
+    font-weight: bold;
+  }
+  
+  .info-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+  }
+  
+  .info-section .text {
+    flex: 1;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #625f63;
+    font-weight: bold;
+  }
+  
+  .info-img {
+    width: 250px;
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 80px;
+  }
+  
+  .blog-title {
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
+  .blog-meta {
+    font-size: 0.9rem;
+    color: gray;
+  }
+  
+  .info-button {
+    display: inline-block;
+    background: linear-gradient(to right, #d36ac2, #6157ff);
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: 0.3s ease;
+    margin-bottom: 0.8rem;
+  }
+  
+  .info-button:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+
+
+  .notes-box, .info-img {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+  }
+  
+  .info-img:hover {
+    transform: scale(1.05);
+  }
+  
+  .hoverable {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .hoverable:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .gradient-title {
+    background: linear-gradient(to right, #d36ac2, #6157ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+  }
+  
+  .section-with-bg {
+    background-image: url("../assets/circle1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 2rem;
+    border-radius: 12px;
+    margin: 2rem 0;
+  }
+  
+  .section-bg-bottom {
+    position: relative;
+    z-index: 0;
+    margin-top: 5rem;
+  }
+  
+  .section-bg-bottom::after {
+    content: "";
+    background: url("../assets/circle1.png") no-repeat;
+    background-size: contain;
+    background-position: 20% center; /* center yerine bu satırı kullandık */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 500px;
+    z-index: -1;
+    opacity: 0.8;
+  }
