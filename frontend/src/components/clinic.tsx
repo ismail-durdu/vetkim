@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { FaEye, FaArrowRight } from "react-icons/fa6";
-import logo1 from "../../public/clinic/1.svg";
+
 import ClinicBox from "./ClinicBox";
 import AppointmentBox from "./AppointmentBox";
 import "../css/secondary-button.css";
@@ -33,7 +33,7 @@ const Clinic: React.FC<{ clinic?: IClinic }> = ({ clinic }) => {
     <div className="flex flex-col gap-4 bg-gray-100 px-5 lg:px-10 pb-10 pt-4 relative rounded-lg shadow-md">
       <div className="w-full">
         <img
-          className="w-2/3 mx-auto"
+          className="w-2/3 mx-auto h-20"
           src={`/clinic/${clinicData.clinic_image}`}
           alt="Clinic Logo"
         />
@@ -45,9 +45,9 @@ const Clinic: React.FC<{ clinic?: IClinic }> = ({ clinic }) => {
       </div>
 
       {clinicData.clinic_id && clinicData.clinic_name && (
-        <div className="flex flex-row justify-between mt-5">
+        <div className="flex flex-col  justify-between  gap-4 mt-5">
           <button
-            className=" flex flex-row items-center gap-2 btn xl:w-5/12 justify-center"
+            className=" flex flex-row items-center  gap-2 btn  justify-center"
             onClick={openBox}
           >
             See More <FaEye />
