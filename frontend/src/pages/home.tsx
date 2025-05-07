@@ -35,10 +35,11 @@ interface Pet {
 
 function Home() {
   const login = useSelector((state: any) => state.app.login);
-  const [userData, setUserData] = useState<User | null>(null);
+  const [userData, setUserData] = useState<User>(null!);
   const [petData, setPetData] = useState<Pet[]>([]);
 
   useEffect(() => {
+    if (!login) return;
     const token = localStorage.getItem("token");
     if (!token) {
       console.error("❌ Token eksik, giriş yapmalısın.");
@@ -47,7 +48,6 @@ function Home() {
 
     const fetchData = async () => {
       try {
-        // Profil API çağrısı
         const profileResponse = await fetch(
           "http://localhost:8000/api/profile",
           {
@@ -94,11 +94,7 @@ function Home() {
     };
 
     fetchData();
-  }, []);
-
-  if (!userData || petData.length === 0) {
-    return <p>Loading...</p>;
-  }
+  }, [login]);
 
   const firstPet = petData[0];
 
@@ -106,26 +102,26 @@ function Home() {
     <>
       {login ? (
         <div className="dashboard">
-          <h2 className="welcome">Welcome {userData.user_name}!</h2>
+          <h2 className="welcome">Welcome {userData?.user_name}!</h2>
 
           {/* Pet Info Section */}
           <div className="notes-section">
             <div className="notes-box">
               <h3 className="gradient-title">🐾 Pet Information</h3>
               <p>
-                <strong>Pet Name:</strong> {firstPet.pet_name}
+                <strong>Pet Name:</strong> {firstPet?.pet_name}
               </p>
               <p>
-                <strong>Pet Type:</strong> {firstPet.type}
+                <strong>Pet Type:</strong> {firstPet?.type}
               </p>
               <p>
-                <strong>Old:</strong> {firstPet.pet_old} years old
+                <strong>Old:</strong> {firstPet?.pet_old} years old
               </p>
               <p>
-                <strong>Breed:</strong> {firstPet.species}
+                <strong>Breed:</strong> {firstPet?.species}
               </p>
               <p>
-                <strong>Gender:</strong> {firstPet.pet_gender}
+                <strong>Gender:</strong> {firstPet?.pet_gender}
               </p>
             </div>
 
