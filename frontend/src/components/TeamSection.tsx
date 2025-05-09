@@ -16,8 +16,8 @@ const TeamSection = () => {
       <div className="max-w-7xl mx-auto px-8">
         <div className="max-w-2xl mx-auto text-center mb-4 ">
           <h2 className="text-4xl font-bold text-[#4B5563]">Meet our team</h2>
-          <p className="text-purple-300 text-sm mt-6 leading-relaxed">
-            Veniam proident aute magna anim excepteur et ex consectetur velit ullamco veniam minim aute sit. Ullamco nisi enim ipsum irure laboris ad ut.
+          <p className="text-purple-300 text-xl mt-6 leading-relaxed">
+            We’re a group of engineers committed to making pet care smarter, simpler, and more accessible.
           </p>
         </div>
 
