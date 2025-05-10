@@ -71,7 +71,7 @@ function header() {
       .catch((error) => {
         console.error("Hata:", error);
       });
-  }, []);
+  }, [login]);
 
   const exit = () => {
     const token = localStorage.getItem("token");
