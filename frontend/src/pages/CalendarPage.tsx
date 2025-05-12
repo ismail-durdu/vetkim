@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -14,7 +14,6 @@ function CalendarPage() {
   const navigate = useNavigate();
 
   const [notes, setNotes] = useState<Note[]>([]);
-
   const [showForm, setShowForm] = useState(false);
   const [noteText, setNoteText] = useState("");
   const [noteDate, setNoteDate] = useState(() => {
@@ -22,13 +21,78 @@ function CalendarPage() {
     return today.toISOString().split("T")[0];
   });
 
-  const handleSave = () => {
+  // Notları veritabanından çek
+  useEffect(() => {
+    const fetchNotes = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      try {
+        const res = await fetch("http://localhost:8000/api/notes", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          setNotes(
+            data.map((note: any) => ({
+              date: note.note_date,
+              text: note.note_text,
+            }))
+          );
+        } else {
+          console.error("Notları alırken hata:", data.error);
+        }
+      } catch (err) {
+        console.error("İstek hatası:", err);
+      }
+    };
+
+    fetchNotes();
+  }, []);
+
+  // Not kaydet
+  const handleSave = async () => {
+    console.log("Save butonuna tıklandı!");
+
     if (!noteText.trim()) return;
-    const newNote = { date: noteDate, text: noteText };
-    setNotes((prev) => [...prev, newNote]);
-    setNoteText("");
-    setNoteDate(new Date().toISOString().split("T")[0]);
-    setShowForm(false);
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Giriş yapmanız gerekiyor.");
+      return;
+    }
+
+    const formattedDate = new Date(noteDate).toISOString().split("T")[0];
+
+    try {
+      const response = await fetch("http://localhost:8000/api/notes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          note_date: formattedDate,
+          note_text: noteText,
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        console.log("Not eklendi:", data);
+        setNotes((prev) => [...prev, { date: formattedDate, text: noteText }]);
+        setNoteText("");
+        setNoteDate(new Date().toISOString().split("T")[0]);
+        setShowForm(false);
+      } else {
+        console.error("❌ Not eklenemedi:", data.error);
+      }
+    } catch (err) {
+      console.error("❌ Sunucu hatası:", err);
+    }
   };
 
   const handleDeleteNote = (indexToDelete: number) => {
@@ -117,6 +181,7 @@ function CalendarPage() {
             />
             <div className="flex justify-between">
               <button
+                type="button"
                 onClick={handleSave}
                 className="px-4 py-1 text-white"
                 style={{
@@ -127,7 +192,8 @@ function CalendarPage() {
                 Save
               </button>
               <button
-                onClick={() => setShowForm(false)}
+                type="button"
+                onClick={() => setShowForm(true)}
                 className="text-gray-500 underline"
               >
                 Cancel
