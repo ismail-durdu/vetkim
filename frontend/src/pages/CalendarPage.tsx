@@ -157,10 +157,6 @@ function CalendarPage() {
             </div>
           ))}
         </div>
-
-        <Link to="/notes" className="see-all mt-6 self-start">
-          See all →
-        </Link>
       </div>
 
       {showForm && (

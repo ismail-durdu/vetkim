@@ -139,9 +139,13 @@ function header() {
       {login ? (
         <React.Fragment>
           <Box
-            sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              textAlign: "center",
+            }}
           >
-            <Tooltip className="absolute" title="Account settings">
+            <Tooltip className="absolute " title="Account settings">
               <IconButton
                 onClick={handleClick}
                 size="small"
@@ -209,18 +213,6 @@ function header() {
               </MenuItem>
             </Link>
 
-            <MenuItem onClick={handleClose}>
-              <ListItemIcon>
-                <IoMdPersonAdd />
-              </ListItemIcon>
-              Add another account
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <ListItemIcon>
-                <AiFillSetting />
-              </ListItemIcon>
-              Settings
-            </MenuItem>
             <MenuItem onClick={exit}>
               <ListItemIcon>
                 <MdLogout />

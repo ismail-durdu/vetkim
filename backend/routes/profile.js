@@ -74,8 +74,8 @@ router.put("/", authenticate, (req, res) => {
     user_old,
     user_phone,
     user_gender,
-    user_country,
-    user_province,
+    location_id,
+    user_email,
   } = req.body;
 
   // Eksik alan kontrolü
@@ -84,46 +84,41 @@ router.put("/", authenticate, (req, res) => {
     !user_lastname ||
     !user_old ||
     !user_gender ||
-    !user_country ||
-    !user_province
+    !user_phone ||
+    !user_email ||
+    !location_id
   ) {
     return res
       .status(400)
       .json({ error: "Lütfen tüm gerekli alanları doldurun" });
   }
 
-  // Location güncelle veya ekle
-  const locationQuery = `
-    UPDATE location 
-    SET country = ?, province = ? 
-    WHERE location_id = (SELECT location_id FROM users WHERE user_id = ?)
+  const userQuery = `
+    UPDATE users 
+    SET user_name = ?, user_lastname = ?, user_old = ?, user_phone = ?, user_gender = ?, user_email = ?, location_id = ?
+    WHERE user_id = ?
   `;
 
-  db.query(locationQuery, [user_country, user_province, userId], (err) => {
-    if (err) {
-      console.error("Konum güncelleme hatası:", err);
-      return res.status(500).json({ error: "Konum güncelleme hatası" });
-    }
-
-    // User güncelle
-    const userQuery = `
-      UPDATE users 
-      SET user_name = ?, user_lastname = ?, user_old = ?, user_phone = ?, user_gender = ?
-      WHERE user_id = ?
-    `;
-
-    db.query(
-      userQuery,
-      [user_name, user_lastname, user_old, user_phone, user_gender, userId],
-      (err) => {
-        if (err) {
-          console.error("Kullanıcı güncelleme hatası:", err);
-          return res.status(500).json({ error: "Kullanıcı güncelleme hatası" });
-        }
-        res.status(200).json({ message: "Profil başarıyla güncellendi" });
+  db.query(
+    userQuery,
+    [
+      user_name,
+      user_lastname,
+      user_old,
+      user_phone,
+      user_gender,
+      user_email,
+      location_id,
+      userId,
+    ],
+    (err) => {
+      if (err) {
+        console.error("Kullanıcı güncelleme hatası:", err);
+        return res.status(500).json({ error: "Kullanıcı güncelleme hatası" });
       }
-    );
-  });
+      res.status(200).json({ message: "Profil başarıyla güncellendi" });
+    }
+  );
 });
 
 module.exports = router;

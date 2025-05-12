@@ -114,7 +114,38 @@ function Profile() {
     };
 
     fetchData();
-  }, []);
+  }, [editMode]);
+  const handleApplyChanges = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("❌ Token eksik, giriş yapmalısın.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:8000/api/profile", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(userData),
+      });
+
+      if (!response.ok) {
+        throw new Error(
+          `Profil güncellenemedi, HTTP Hata Kodu: ${response.status}`
+        );
+      }
+      const updatedData = await response.json();
+      setUserData(updatedData.user);
+      console.log("✅ Profil başarıyla güncellendi:", updatedData);
+
+      closeEditMode();
+    } catch (err) {
+      console.error("❌ Profil güncelleme hatası oluştu:", err);
+    }
+  };
 
   return (
     <div className="px-5 pb-30 lg:px-20 ">
@@ -136,7 +167,7 @@ function Profile() {
         </div>
         {editMode ? (
           <div
-            onClick={closeEditMode}
+            onClick={handleApplyChanges}
             className="flex flex-row cursor-pointer items-center px-4 py-1 bg-gradient-to-r from-blue-400 to-purple-300 rounded-lg text-white"
           >
             <FaCheck /> Apply
@@ -201,6 +232,7 @@ function Profile() {
               type="text"
               placeholder="Country"
               value="Turkey"
+              readOnly
             />
           </div>
           <div>
@@ -209,7 +241,7 @@ function Profile() {
               className="bg-gray-100 border-2 border-blue-300 outline-none rounded w-full px-2 py-2 focus:border-blue-600"
               type="text"
               placeholder="Language"
-              value={userData?.user_old}
+              value={isNaN(userData?.user_old) ? "" : userData?.user_old}
               onChange={(e) =>
                 setUserData((prev) => ({
                   ...prev,
@@ -224,11 +256,41 @@ function Profile() {
               className="bg-gray-100 border-2 border-blue-300 outline-none rounded w-full px-2 py-2 focus:border-blue-600"
               type="text"
               placeholder="Province"
-              value={userData?.province}
+              value={isNaN(userData?.location_id) ? "" : userData?.location_id}
               onChange={(e) =>
                 setUserData((prev) => ({
                   ...prev,
                   location_id: parseInt(e.target.value),
+                }))
+              }
+            />
+          </div>
+          <div>
+            <p className="font-bold">My E-mail Address</p>
+            <input
+              className="bg-gray-100 border-2 border-blue-300 outline-none rounded w-full px-2 py-2 focus:border-blue-600"
+              type="text"
+              placeholder="E-mail"
+              value={userData?.user_email}
+              onChange={(e) =>
+                setUserData((prev) => ({
+                  ...prev,
+                  user_email: e.target.value,
+                }))
+              }
+            />
+          </div>
+          <div>
+            <p className="font-bold">My Phone Number</p>
+            <input
+              className="bg-gray-100 border-2 border-blue-300 outline-none rounded w-full px-2 py-2 focus:border-blue-600"
+              type="text"
+              placeholder="Phone Number"
+              value={userData?.user_phone}
+              onChange={(e) =>
+                setUserData((prev) => ({
+                  ...prev,
+                  user_phone: e.target.value,
                 }))
               }
             />
@@ -272,6 +334,24 @@ function Profile() {
               {userData?.province}
             </p>
           </div>
+          <div>
+            <p className="font-bold">My E-mail Address</p>
+            <div className="flex flex-row justify-between items-center bg-gray-100 border-2 border-purple-500 rounded w-full px-2 py-2">
+              <p className=" ">{userData?.user_email}</p>
+              <div className="bg-purple-400 p-1.5 rounded-full text-white">
+                <IoIosMail />
+              </div>
+            </div>
+          </div>
+          <div>
+            <p className="font-bold">My Phone Number</p>
+            <div className="flex flex-row justify-between items-center bg-gray-100 border-2 border-purple-500 rounded w-full px-2 py-2">
+              <p className=" ">{userData?.user_phone}</p>
+              <div className="bg-purple-400 p-1.5 rounded-full text-white">
+                <MdCall />
+              </div>
+            </div>
+          </div>
         </div>
       )}
 
@@ -297,32 +377,6 @@ function Profile() {
       <button className="flex flex-row items-center px-4 py-1 my-5 gap-2 bg-purple-300 hover:bg-purple-600 hover:scale-105 transition-all duration-200 text-white rounded-lg shadow-md">
         <FaPlus /> Add New Pet
       </button>
-
-      <div className="mt-10 lg:mt-24 mb-4 text-2xl lg:text-3xl font-bold text-purple-800 font-sans tracking-wide flex items-center gap-3">
-        <span className="bg-gradient-to-r from-purple-600 via-purple-400 to-blue-600 bg-clip-text text-transparent">
-          Contact Information
-        </span>
-      </div>
-
-      <div>
-        <h1 className="font-bold ">My E-mail Address</h1>
-        <div className="flex flex-row items-center gap-2 my-3">
-          <div className="bg-purple-400 p-1.5 rounded-full text-white">
-            <IoIosMail />
-          </div>
-          <p className="opacity-70">{userData?.user_email}</p>
-        </div>
-      </div>
-
-      <div>
-        <h1 className="font-bold ">My Phone Number</h1>
-        <div className="flex flex-row items-center gap-2 my-3">
-          <div className="bg-purple-400 p-1.5 rounded-full text-white">
-            <MdCall />
-          </div>
-          <p className="opacity-70">{userData?.user_phone}</p>
-        </div>
-      </div>
     </div>
   );
 }
