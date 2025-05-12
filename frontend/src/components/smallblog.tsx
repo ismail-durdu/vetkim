@@ -19,7 +19,7 @@ function SmallBlog({ blog }: { blog: Blog }) {
         onClick={() => setIsModalOpen(true)}
       >
         <div className="flex justify-center">
-          <img className="w-5/6" src={`/blog/${blog.blog_image}`} alt="" />
+          <img className="w-11/12 h-60" src={`/blog/${blog.blog_image}`} alt="" />
         </div>
         <div>
           <div className="flex flex-row justify-between items-center">
