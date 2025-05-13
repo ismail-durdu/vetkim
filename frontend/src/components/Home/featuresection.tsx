@@ -2,11 +2,11 @@ function FeatureSection() {
   const featureCards = [
     {
       title: "Booking",
-      desc: "Easily schedule appointments with veterinary clinics. Browse available time slots and book with a single tap.",
+      desc: "Easily schedule appointments with veterinary clinics. ",
     },
     {
       title: "Connect",
-      desc: "Communicate directly with your trusted veterinary clinic. Ask questions and get answers right from the app.",
+      desc: "Communicate directly with your trusted veterinary clinic.",
     },
     {
       title: "Profiles",
